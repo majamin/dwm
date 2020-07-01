@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -15,6 +15,7 @@ static const char col_black[]       = "#000000";
 static const char col_white[]       = "#ffffff";
 
 static const char col_background[]	= "#282a36";
+//static const char col_background[]	= "#222222";
 static const char col_cyan[]		= "#8be9fd";
 static const char col_cyan_dim[]	= "#548e99";
 static const char col_green[]		= "#50fa7b";
@@ -24,17 +25,44 @@ static const char col_purple[]		= "#bd93f9";
 static const char col_red[]		= "#ff5555";
 static const char col_yellow[]		= "#f1fa8c";
 
+static const unsigned int baralpha = 0xd0;
+//static const unsigned int baralpha = 0x10;
+static const unsigned int borderalpha = OPAQUE;
+
 static const char *colors[][3]      = {
 	/*                   fg         bg          border   */
 	[SchemeNorm]     = { col_gray3, col_background,  col_gray2  },
-	[SchemeSel]      = { col_gray4, col_background,   col_cyan   },
-	[SchemeWarn]     = { col_yellow,col_background, col_red    },
-	[SchemeUrgent]   = { col_red,   col_background,    col_red    },
+	[SchemeSel]      = { col_gray2, col_background,   col_orange   },
+	[SchemeCyan]     = { col_cyan,col_background, col_gray2    },
+	[SchemeOrange]   = { col_orange,col_background, col_gray2    },
+	[SchemePink]     = { col_pink,col_background, col_gray2    },
+	[SchemePurple]   = { col_purple,col_background, col_gray2    },
+	[SchemeYellow]   = { col_yellow,   col_background,    col_gray2    },
+	[SchemeRed]      = { col_red,   col_background,    col_gray2    },
 	[SchemeStatus]   = { col_gray4, col_background,   col_background   },
-	[SchemeTagsSel]  = { col_cyan, col_background,   "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
+	[SchemeTagsSel]  = { col_cyan, col_background,   col_gray2  }, // Tagbar left selected {text,background,not used but cannot be empty}
 	[SchemeTagsNorm] = { col_cyan_dim, col_background,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
 	[SchemeInfoSel]  = { col_cyan, col_background,   "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
 	[SchemeInfoNorm] = { col_cyan_dim, col_background,  "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
+};
+
+static const unsigned int alphas[][3]      = {
+	/*               fg      bg        border     */
+	[SchemeNorm]     = { OPAQUE, baralpha, borderalpha },
+	[SchemeSel]      = { OPAQUE, baralpha, borderalpha },
+	[SchemeCyan]     = { OPAQUE, baralpha, borderalpha },
+	[SchemeOrange]   = { OPAQUE, baralpha, borderalpha },
+	[SchemePink]     = { OPAQUE, baralpha, borderalpha },
+	[SchemePurple]   = { OPAQUE, baralpha, borderalpha },
+	[SchemeYellow]   = { OPAQUE, baralpha, borderalpha },
+	[SchemeRed]      = { OPAQUE, baralpha, borderalpha },
+	[SchemeStatus]   = { OPAQUE, baralpha, borderalpha },
+        [SchemeTagsSel]  = { OPAQUE, baralpha, borderalpha },
+        [SchemeTagsNorm] = { OPAQUE, baralpha, borderalpha },
+        [SchemeInfoSel]  = { OPAQUE, baralpha, borderalpha },
+        [SchemeInfoNorm] = { OPAQUE, baralpha, borderalpha },
+
+
 };
 
 /* tagging */
