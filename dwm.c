@@ -64,7 +64,7 @@
 /* enums */
 enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
 enum { SchemeNorm, SchemeSel, SchemeCyan, SchemeOrange,
-	SchemePink, SchemePurple, SchemeYellow, SchemeRed,
+	SchemePink, SchemePurple, SchemeGreen, SchemeYellow, SchemeRed,
 	SchemeStatus, SchemeTagsSel, SchemeTagsNorm, 
 	SchemeInfoSel, SchemeInfoNorm }; /* color schemes */
 enum { NetSupported, NetWMName, NetWMState, NetWMCheck,

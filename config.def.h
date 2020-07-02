@@ -33,12 +33,13 @@ static const unsigned int borderalpha = OPAQUE;
 
 static const char *colors[][3]      = {
 	/*                   fg         bg          border   */
-	[SchemeNorm]     = { col_gray3, col_background,  col_gray2  },
+	[SchemeNorm]     = { col_white, col_background,  col_gray2  },
 	[SchemeSel]      = { col_gray2, col_background,   col_orange   },
 	[SchemeCyan]     = { col_cyan,col_background, col_gray2    },
 	[SchemeOrange]   = { col_orange,col_background, col_gray2    },
 	[SchemePink]     = { col_pink,col_background, col_gray2    },
 	[SchemePurple]   = { col_purple,col_background, col_gray2    },
+	[SchemeGreen]    = { col_green,col_background, col_gray2    },
 	[SchemeYellow]   = { col_yellow,   col_background,    col_gray2    },
 	[SchemeRed]      = { col_red,   col_background,    col_gray2    },
 	[SchemeStatus]   = { col_gray4, col_background,   col_background   },
@@ -56,6 +57,7 @@ static const unsigned int alphas[][3]      = {
 	[SchemeOrange]   = { OPAQUE, baralpha, borderalpha },
 	[SchemePink]     = { OPAQUE, baralpha, borderalpha },
 	[SchemePurple]   = { OPAQUE, baralpha, borderalpha },
+	[SchemeGreen]    = { OPAQUE, baralpha, borderalpha },
 	[SchemeYellow]   = { OPAQUE, baralpha, borderalpha },
 	[SchemeRed]      = { OPAQUE, baralpha, borderalpha },
 	[SchemeStatus]   = { OPAQUE, baralpha, borderalpha },
@@ -63,8 +65,6 @@ static const unsigned int alphas[][3]      = {
         [SchemeTagsNorm] = { OPAQUE, baralpha, borderalpha },
         [SchemeInfoSel]  = { OPAQUE, baralpha, borderalpha },
         [SchemeInfoNorm] = { OPAQUE, baralpha, borderalpha },
-
-
 };
 
 /* tagging */
