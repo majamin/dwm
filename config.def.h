@@ -43,9 +43,9 @@ static const char *colors[][3]      = {
 	[SchemeYellow]   = { col_yellow,   col_background,    col_gray2    },
 	[SchemeRed]      = { col_red,   col_background,    col_gray2    },
 	[SchemeStatus]   = { col_gray4, col_background,   col_background   },
-	[SchemeTagsSel]  = { col_cyan, col_background,   col_gray2  }, // Tagbar left selected {text,background,not used but cannot be empty}
-	[SchemeTagsNorm] = { col_cyan_dim, col_background,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
-	[SchemeInfoSel]  = { col_cyan, col_background,   "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
+	[SchemeTagsSel]  = { col_white, col_cyan_dim,   col_gray2  }, // Tagbar left selected {text,background,not used but cannot be empty}
+	[SchemeTagsNorm] = { col_gray4, col_background,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
+	[SchemeInfoSel]  = { col_white, col_background,   "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
 	[SchemeInfoNorm] = { col_cyan_dim, col_background,  "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
 };
 
@@ -118,6 +118,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_w,      spawn,          SHCMD("$BROWSER") },    // Opens browser
+	{ MODKEY,			XK_y,	   spawn,	   SHCMD("clipyt play") },
 	{ MODKEY,                       XK_q,      killclient,     {0} },    // Forceably close client (window)
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
@@ -134,7 +135,6 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_Print,  spawn,		SHCMD("dmenurecord kill") },
 	{ MODKEY,			XK_Delete, spawn,		SHCMD("dmenurecord kill") },
 	{ MODKEY,			XK_Scroll_Lock,	spawn,		SHCMD("killall screenkey || screenkey &") },
-	{ MODKEY,			XK_y,	   spawn,		SHCMD("clipyt play") },
 	{ MODKEY,			XK_n,	   spawn,		SHCMD("st -e newsboat") },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
@@ -145,6 +145,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
+	{ MODKEY,                       XK_s,      togglesticky,   {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
