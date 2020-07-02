@@ -2,8 +2,9 @@
 
 /* appearance */
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
-static const unsigned int gappx     = 6;        /* gaps between windows */
+static const unsigned int gappx     = 4;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
+static const int swallowfloating    = 1;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=10" };
@@ -74,9 +75,11 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	/* class     instance         title           tags mask  isfloating  isterminal  noswallow  monitor */
+	{ "Gimp",    NULL,            NULL,           0,         1,          0,           0,        -1 },
+	{ "Brave",   NULL,            NULL,           1 << 8,    0,          0,           1,        -1 },
+	{ "St",      NULL,            NULL,           0,         0,          1,           0,        -1 },
+	{ NULL,      NULL,            "Event Tester", 0,         1,          0,           1,        -1 }, /* xev */
 };
 
 /* layout(s) */
@@ -110,13 +113,29 @@ static const char *termcmd[]  = { "st", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
+	{ MODKEY,                       XK_w,      spawn,          SHCMD("$BROWSER") },    // Opens browser
+	{ MODKEY,                       XK_q,      killclient,     {0} },    // Forceably close client (window)
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
+	{ MODKEY|ShiftMask,		XK_a,	   spawn,          SHCMD("myconfigs") }, // Open menu to edit config files
+	{ MODKEY|ShiftMask,		XK_BackSpace,	spawn,     SHCMD("sysact") },    // System shutdown menu
+	{ MODKEY,			XK_minus,	spawn,     SHCMD("pamixer --allow-boost -d 5; kill -44 $(pidof dwmblocks)") },    // Volume down 5
+	{ MODKEY|ShiftMask,		XK_minus,	spawn,     SHCMD("pamixer --allow-boost -d 15; kill -44 $(pidof dwmblocks)") },    // Volume down 15
+	{ MODKEY,			XK_equal,	spawn,     SHCMD("pamixer --allow-boost -i 5; kill -44 $(pidof dwmblocks)") },    // Volume up 5
+	{ MODKEY|ShiftMask,		XK_equal,	spawn,     SHCMD("pamixer --allow-boost -i 15; kill -44 $(pidof dwmblocks)") },    // Volume up 15
+	{ 0,				XK_Print,  spawn,		SHCMD("maim pic-full-$(date '+%y%m%d-%H%M-%S').png") },
+	{ ShiftMask,			XK_Print,  spawn,		SHCMD("maimpick") },
+	{ MODKEY,			XK_Print,  spawn,		SHCMD("dmenurecord") },
+	{ MODKEY|ShiftMask,		XK_Print,  spawn,		SHCMD("dmenurecord kill") },
+	{ MODKEY,			XK_Delete, spawn,		SHCMD("dmenurecord kill") },
+	{ MODKEY,			XK_Scroll_Lock,	spawn,		SHCMD("killall screenkey || screenkey &") },
+	{ MODKEY,			XK_y,	   spawn,		SHCMD("clipyt play") },
+	{ MODKEY,			XK_n,	   spawn,		SHCMD("st -e newsboat") },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
