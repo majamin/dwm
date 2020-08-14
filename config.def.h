@@ -9,19 +9,19 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=14" };
 static const char dmenufont[]       = "monospace:size=14";
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_black[]       = "#000000";
-static const char col_white[]       = "#ffffff";
+static const char col_gray1[]       = "#f0f0f0";
+static const char col_gray2[]       = "#d4d4d4";
+static const char col_gray3[]       = "#c2c2c2";
+static const char col_gray4[]       = "#808080";
+static const char col_black[]       = "#ffffff";
+static const char col_white[]       = "#000000";
 
-static const char col_background[]	= "#282a36";
-//static const char col_background[]	= "#222222";
-static const char col_cyan[]		= "#8be9fd";
+static const char col_background[]	= "#d1d1d1";
+static const char col_cyan[]		= "#00b3ad";
 static const char col_cyan_dim[]	= "#548e99";
-static const char col_green[]		= "#50fa7b";
-static const char col_orange[]		= "#ffb86c";
+static const char col_green[]		= "#00b36b";
+static const char col_orange[]		= "#fc8c14";
+// static const char col_orange[]		= "#ffb86c";
 static const char col_pink[]		= "#ff79c6";
 static const char col_purple[]		= "#bd93f9";
 static const char col_red[]		= "#ff5555";
@@ -43,9 +43,9 @@ static const char *colors[][3]      = {
 	[SchemeYellow]   = { col_yellow,col_background,   col_gray2    },
 	[SchemeRed]      = { col_red,   col_background,   col_gray2    },
 	[SchemeStatus]   = { col_gray4, col_background,   col_background   },
-	[SchemeTagsSel]  = { col_white, col_cyan_dim,     col_gray2  }, // Tagbar left selected {text,background,not used but cannot be empty}
-	[SchemeTagsNorm] = { col_gray4, col_background,   "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
-	[SchemeInfoSel]  = { col_white, col_background,   "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
+	[SchemeTagsSel]  = { col_gray4, col_background,   "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
+	[SchemeTagsNorm] = { col_gray3, col_background,   "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
+	[SchemeInfoSel]  = { col_gray4, col_background,   "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
 	[SchemeInfoNorm] = { col_cyan_dim, col_background,"#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
 };
 
@@ -79,8 +79,8 @@ static const Rule rules[] = {
 	{ "Gimp",    NULL,            NULL,           0,         1,          0,           0,        -1 },
 	{ "Brave",   NULL,            NULL,           1 << 8,    0,          0,           1,        -1 },
 	{ "St",      NULL,            NULL,           0,         0,          1,           0,        -1 },
+	{ "mpv",     NULL,            NULL,           0,         1,          0,           0,        -1 },
 	{ NULL,      NULL,            "Event Tester", 0,         1,          0,           1,        -1 }, /* xev */
-	{ NULL,      "xzoom",         NULL,           0,         1,          0,           1,        -1 },
 };
 
 /* layout(s) */
@@ -111,6 +111,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont };
 static const char *termcmd[]  = { "st", NULL };
 
+#include <X11/XF86keysym.h>
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },    // open program with dmenu
@@ -119,25 +120,26 @@ static Key keys[] = {
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },    // focus on window up in stack
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },    // focus on window down in stack
 	{ MODKEY,                       XK_w,      spawn,          SHCMD("$BROWSER") },    // Opens browser
-	{ MODKEY,			XK_y,	   spawn,	   SHCMD("clipyt play") },    // Open video URL from clipboard
+	{ MODKEY,                       XK_y,      spawn,	   SHCMD("clipyt play") },    // Open video URL from clipboard
 	{ MODKEY,			XK_z,	   spawn,	   SHCMD("st -n xzoom -e 'slop | xargs xzoom -source'") },    // zoom in on a mouse-selected area
 	{ MODKEY,                       XK_q,      killclient,     {0} },    // Forceably close client (window)
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },    // Move window up in stack
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },    // Move window down in stack
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },    // Decrease master window size
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },    // Increase master window size
+	{ MODKEY|ShiftMask,             XK_l,      spawn,          SHCMD("slock") },    // Lock the screen. Enter your password to unlock.
 	{ MODKEY|ShiftMask,		XK_a,	   spawn,          SHCMD("myconfigs") }, // Open menu to edit config files
 	{ MODKEY|ShiftMask,		XK_BackSpace,	spawn,     SHCMD("sysact") },    // System shutdown menu
 	{ MODKEY,			XK_minus,	spawn,     SHCMD("pamixer --allow-boost -d 5; kill -44 $(pidof dwmblocks)") },    // Volume down 5
 	{ MODKEY|ShiftMask,		XK_minus,	spawn,     SHCMD("pamixer --allow-boost -d 15; kill -44 $(pidof dwmblocks)") },    // Volume down 15
 	{ MODKEY,			XK_equal,	spawn,     SHCMD("pamixer --allow-boost -i 5; kill -44 $(pidof dwmblocks)") },    // Volume up 5
 	{ MODKEY|ShiftMask,		XK_equal,	spawn,     SHCMD("pamixer --allow-boost -i 15; kill -44 $(pidof dwmblocks)") },    // Volume up 15
-	{ 0,				XK_Print,  spawn,		SHCMD("maim pic-full-$(date '+%y%m%d-%H%M-%S').png") },    // Take a screenshot; placed in home directory
-	{ ShiftMask,			XK_Print,  spawn,		SHCMD("maimpick") },    // select screenshot type
-	{ MODKEY,			XK_Print,  spawn,		SHCMD("dmenurecord") },    // select screen recording
-	{ MODKEY,			XK_Delete, spawn,		SHCMD("dmenurecord kill") },    // stops recording
-	{ MODKEY,			XK_Scroll_Lock,	spawn,		SHCMD("killall screenkey || screenkey &") },    // restart screenkey
-	{ MODKEY,			XK_n,	   spawn,		SHCMD("st -e newsboat") },    // open newsboat
+	{ 0,				XK_Print,  spawn, 	   SHCMD("maim pic-full-$(date '+%y%m%d-%H%M-%S').png") },    // Take a screenshot; placed in home directory
+	{ ShiftMask,			XK_Print,  spawn,	   SHCMD("maimpick") },    // select screenshot type
+	{ MODKEY,			XK_Print,  spawn,	   SHCMD("dmenurecord") },    // select screen recording
+	{ MODKEY,			XK_Delete, spawn,	   SHCMD("dmenurecord kill") },    // stops recording
+	{ MODKEY,			XK_Scroll_Lock,	spawn,	   SHCMD("killall screenkey || screenkey &") },    // restart screenkey
+	{ MODKEY,			XK_n,	   spawn,	   SHCMD("st -e newsboat") },    // open newsboat
 	{ MODKEY,                       XK_Tab,    view,           {0} },    // return to previous tag
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },    // set tiling window layout
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },    // set floating window layout 
@@ -152,6 +154,26 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ 0,                            XF86XK_AudioMute,	spawn,		SHCMD("pamixer -t; kill -44 $(pidof dwmblocks)") },
+	{ 0,                            XF86XK_AudioRaiseVolume,spawn,		SHCMD("pamixer --allow-boost -i 5; kill -44 $(pidof dwmblocks)") },
+	{ 0,                            XF86XK_AudioLowerVolume,spawn,		SHCMD("pamixer --allow-boost -d 5; kill -44 $(pidof dwmblocks)") },
+	{ 0,                            XF86XK_AudioPrev,	spawn,		SHCMD("mpc prev") },
+	{ 0,                            XF86XK_AudioNext,	spawn,		SHCMD("mpc next") },
+	{ 0,                            XF86XK_AudioPause,	spawn,		SHCMD("mpc pause") },
+	{ 0,                            XF86XK_AudioPlay,	spawn,		SHCMD("mpc play") },
+	{ 0,                            XF86XK_AudioStop,	spawn,		SHCMD("mpc stop") },
+	{ 0,                            XF86XK_AudioRewind,	spawn,		SHCMD("mpc seek -10") },
+	{ 0,                            XF86XK_AudioForward,	spawn,		SHCMD("mpc seek +10") },
+	{ 0,                            XF86XK_AudioMedia,	spawn,		SHCMD("st -e ncmpcpp") },
+	{ 0,                            XF86XK_PowerOff,	spawn,		SHCMD("sysact") },
+	{ 0,                            XF86XK_Sleep,		spawn,		SHCMD("sudo -A zzz") },
+	/* { 0, XF86XK_Battery,         spawn,		SHCMD("") }, */
+	{ 0,                            XF86XK_TouchpadToggle,	spawn,		SHCMD("(synclient | grep 'TouchpadOff.*1' && synclient TouchpadOff=0) || synclient TouchpadOff=1") },
+	{ 0,                            XF86XK_TouchpadOff,	spawn,		SHCMD("synclient TouchpadOff=1") },
+	{ 0,                            XF86XK_TouchpadOn,	spawn,		SHCMD("synclient TouchpadOff=0") },
+	{ 0,                            XF86XK_MonBrightnessUp,	spawn,		SHCMD("xbacklight -inc 15") },
+	{ 0,                            XF86XK_MonBrightnessDown,spawn,		SHCMD("xbacklight -dec 15") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -161,7 +183,6 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 
 /* button definitions */
