@@ -79,6 +79,7 @@ static const Rule rules[] = {
 	{ "Gimp",    NULL,            NULL,           0,         1,          0,           0,        -1 },
 	{ "Brave",   NULL,            NULL,           1 << 8,    0,          0,           1,        -1 },
 	{ "St",      NULL,            NULL,           0,         0,          1,           0,        -1 },
+	{ "mpv",     NULL,            NULL,           0,         1,          0,           1,        -1 },
 	{ NULL,      NULL,            "Event Tester", 0,         1,          0,           1,        -1 }, /* xev */
 	{ NULL,      "xzoom",         NULL,           0,         1,          0,           1,        -1 },
 };
@@ -111,6 +112,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont };
 static const char *termcmd[]  = { "st", NULL };
 
+#include <X11/XF86keysym.h>
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },    // open program with dmenu
@@ -152,6 +154,26 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ 0,                            XF86XK_AudioMute,	spawn,		SHCMD("pamixer -t; kill -44 $(pidof dwmblocks)") },
+	{ 0,                            XF86XK_AudioRaiseVolume,spawn,		SHCMD("pamixer --allow-boost -i 5; kill -44 $(pidof dwmblocks)") },
+	{ 0,                            XF86XK_AudioLowerVolume,spawn,		SHCMD("pamixer --allow-boost -d 5; kill -44 $(pidof dwmblocks)") },
+	{ 0,                            XF86XK_AudioPrev,	spawn,		SHCMD("mpc prev") },
+	{ 0,                            XF86XK_AudioNext,	spawn,		SHCMD("mpc next") },
+	{ 0,                            XF86XK_AudioPause,	spawn,		SHCMD("mpc pause") },
+	{ 0,                            XF86XK_AudioPlay,	spawn,		SHCMD("mpc play") },
+	{ 0,                            XF86XK_AudioStop,	spawn,		SHCMD("mpc stop") },
+	{ 0,                            XF86XK_AudioRewind,	spawn,		SHCMD("mpc seek -10") },
+	{ 0,                            XF86XK_AudioForward,	spawn,		SHCMD("mpc seek +10") },
+	{ 0,                            XF86XK_AudioMedia,	spawn,		SHCMD("st -e ncmpcpp") },
+	{ 0,                            XF86XK_PowerOff,	spawn,		SHCMD("sysact") },
+	{ 0,                            XF86XK_Sleep,		spawn,		SHCMD("sudo -A zzz") },
+	/* { 0, XF86XK_Battery,         spawn,		SHCMD("") }, */
+	{ 0,                            XF86XK_TouchpadToggle,	spawn,		SHCMD("(synclient | grep 'TouchpadOff.*1' && synclient TouchpadOff=0) || synclient TouchpadOff=1") },
+	{ 0,                            XF86XK_TouchpadOff,	spawn,		SHCMD("synclient TouchpadOff=1") },
+	{ 0,                            XF86XK_TouchpadOn,	spawn,		SHCMD("synclient TouchpadOff=0") },
+	{ 0,                            XF86XK_MonBrightnessUp,	spawn,		SHCMD("xbacklight -inc 15") },
+	{ 0,                            XF86XK_MonBrightnessDown,spawn,		SHCMD("xbacklight -dec 15") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
