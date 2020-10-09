@@ -1,5 +1,9 @@
 /* See LICENSE file for copyright and license details. */
 
+/* Constants */
+#define TERMINAL "st"
+#define TERMCLASS "St"
+
 /* appearance */
 static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int gappx     = 10;        /* gaps between windows */
@@ -75,13 +79,14 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class     instance         title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "Gimp",    NULL,            NULL,           0,         1,          0,           0,        -1 },
-	{ "Brave",   NULL,            NULL,           1 << 8,    0,          0,           1,        -1 },
-	{ "St",      NULL,            NULL,           0,         0,          1,           0,        -1 },
-	{ "mpv",     NULL,            NULL,           0,         1,          0,           1,        -1 },
-	{ NULL,      NULL,            "Event Tester", 0,         1,          0,           1,        -1 }, /* xev */
-	{ NULL,      "xzoom",         NULL,           0,         1,          0,           1,        -1 },
+	/* class     instance         title             tags mask  isfloating  isterminal  noswallow  monitor */
+	{ "Gimp",    NULL,            NULL,             0,         1,          0,           0,        -1 },
+	{ "Brave",   NULL,            NULL,             1 << 8,    0,          0,           1,        -1 },
+	{ "St",      NULL,            NULL,             0,         0,          1,           0,        -1 },
+	{ "mpv",     NULL,            NULL,             0,         1,          0,           1,        -1 },
+	{ NULL,      NULL,            "Event Tester",   0,         1,          0,           1,        -1 }, /* xev */
+	{ NULL,      NULL,            "pygame window",  0,         1,          0,           1,        -1 }, /* pygame things */
+	{ NULL,      "xzoom",         NULL,             0,         1,          0,           1,        -1 },
 };
 
 /* layout(s) */
@@ -110,7 +115,8 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont };
-static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd[]  = { TERMINAL, NULL };
+static const char *filecmd[]  = { "nautilus", NULL };
 
 #include <X11/XF86keysym.h>
 static Key keys[] = {
@@ -120,6 +126,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_b,         togglebar,      {0} },    // toggle statusbar
 	{ MODKEY,                       XK_j,         focusstack,     {.i = +1 } },    // focus on window up in stack
 	{ MODKEY,                       XK_k,         focusstack,     {.i = -1 } },    // focus on window down in stack
+	{ MODKEY,                       XK_e,         spawn,          {.v = filecmd } },    // Opens a file manager
 	{ MODKEY,                       XK_w,         spawn,          SHCMD("$BROWSER") },    // Opens browser
 	{ MODKEY,                       XK_y,         spawn,          SHCMD("clipyt play") },    // Open video URL from clipboard
 	{ MODKEY,                       XK_z,         spawn,          SHCMD("st -n xzoom -e 'slop | xargs xzoom -source'") },    // zoom in on a mouse-selected area
@@ -128,6 +135,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_d,         incnmaster,     {.i = -1 } },    // Move window down in stack
 	{ MODKEY,                       XK_h,         setmfact,       {.f = -0.05} },    // Decrease master window size
 	{ MODKEY,                       XK_l,         setmfact,       {.f = +0.05} },    // Increase master window size
+	{ MODKEY|ShiftMask,             XK_l,         spawn,          SHCMD("slock") },    // Lock the screen; type passwd to unlock
 	{ MODKEY|ShiftMask,             XK_Return,    zoom,           {0} },
 	{ MODKEY|ShiftMask,             XK_a,         spawn,          SHCMD("myconfigs") }, // Open menu to edit config files
 	{ MODKEY|ShiftMask,             XK_BackSpace, spawn,          SHCMD("sysact") },    // System shutdown menu
@@ -140,10 +148,11 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Print,     spawn,          SHCMD("dmenurecord") },    // select screen recording
 	{ MODKEY,                       XK_Delete,    spawn,          SHCMD("dmenurecord kill") },    // stops recording
 	{ MODKEY,                       XK_Scroll_Lock, spawn,        SHCMD("killall screenkey || screenkey &") },    // restart screenkey
-	{ MODKEY,                       XK_n,         spawn,          SHCMD("st -e newsboat") },    // open newsboat
+	{ MODKEY,                       XK_v,         spawn,          SHCMD(TERMINAL " -e nvim -c VimwikiIndex") },
+	{ MODKEY,                       XK_n,         spawn,          SHCMD(TERMINAL " -e newsboat") },    // open newsboat
 	{ MODKEY,                       XK_Tab,       view,           {0} },    // return to previous tag
 	{ MODKEY,                       XK_t,         setlayout,      {.v = &layouts[0]} },    // set tiling window layout
-	{ MODKEY,                       XK_f,         setlayout,      {.v = &layouts[1]} },    // set floating window layout 
+	{ MODKEY,                       XK_f,         setlayout,      {.v = &layouts[1]} },    // set floating window layout
 	{ MODKEY,                       XK_m,         setlayout,      {.v = &layouts[2]} },    // set monocle window layout
 	{ MODKEY,                       XK_space,     setlayout,      {0} },    // toggle layout view
 	{ MODKEY|ShiftMask,             XK_space,     togglefloating, {0} },    // float selected window
@@ -166,7 +175,7 @@ static Key keys[] = {
 	{ 0,                            XF86XK_AudioStop,         spawn,  SHCMD("mpc stop") },
 	{ 0,                            XF86XK_AudioRewind,       spawn,  SHCMD("mpc seek -10") },
 	{ 0,                            XF86XK_AudioForward,      spawn,  SHCMD("mpc seek +10") },
-	{ 0,                            XF86XK_AudioMedia,        spawn,  SHCMD("st -e ncmpcpp") },
+	{ 0,                            XF86XK_AudioMedia,        spawn,  SHCMD(TERMINAL " -e ncmpcpp") },
 	{ 0,                            XF86XK_PowerOff,          spawn,  SHCMD("sysact") },
 	{ 0,                            XF86XK_Sleep,             spawn,  SHCMD("sudo -A zzz") },
 	/* { 0, XF86XK_Battery,         spawn,  SHCMD("") }, */
@@ -202,4 +211,3 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
-
