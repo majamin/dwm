@@ -148,6 +148,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Print,     spawn,          SHCMD("dmenurecord") },    // select screen recording
 	{ MODKEY,                       XK_Delete,    spawn,          SHCMD("dmenurecord kill") },    // stops recording
 	{ MODKEY,                       XK_Scroll_Lock, spawn,        SHCMD("killall screenkey || screenkey &") },    // restart screenkey
+	{ MODKEY,                       XK_grave,     spawn,          SHCMD(TERMINAL " lastpass-dmenu copy") },
 	{ MODKEY,                       XK_v,         spawn,          SHCMD(TERMINAL " -e nvim -c VimwikiIndex") },
 	{ MODKEY,                       XK_n,         spawn,          SHCMD(TERMINAL " -e newsboat") },    // open newsboat
 	{ MODKEY,                       XK_Tab,       view,           {0} },    // return to previous tag
