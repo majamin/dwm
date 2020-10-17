@@ -21,7 +21,6 @@ static const char col_black[]       = "#000000";
 static const char col_white[]       = "#ffffff";
 
 static const char col_background[]	= "#282a36";
-//static const char col_background[]	= "#222222";
 static const char col_cyan[]		= "#8be9fd";
 static const char col_cyan_dim[]	= "#548e99";
 static const char col_green[]		= "#50fa7b";
