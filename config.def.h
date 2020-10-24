@@ -5,7 +5,7 @@
 #define TERMCLASS "St"
 
 /* appearance */
-static const unsigned int borderpx  = 3;        /* border pixel of windows */
+static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int gappx     = 10;        /* gaps between windows */
 static const unsigned int snap      = 24;       /* snap pixel */
 static const int swallowfloating    = 1;        /* 1 means swallow floating windows by default */
@@ -17,10 +17,9 @@ static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
-static const char col_black[]       = "#000000";
-static const char col_white[]       = "#ffffff";
+static const char col_foreground[]  = "#111111";
+static const char col_background[]  = "#bbbbbb";
 
-static const char col_background[]	= "#282a36";
 static const char col_cyan[]		= "#8be9fd";
 static const char col_cyan_dim[]	= "#548e99";
 static const char col_green[]		= "#50fa7b";
@@ -36,20 +35,20 @@ static const unsigned int borderalpha = OPAQUE; // don't make borders transparen
 
 static const char *colors[][3]      = {
 	/*                   fg         bg              border   */
-	[SchemeNorm]     = { col_white, col_background,   col_gray2  },
-	[SchemeSel]      = { col_gray2, col_background,   col_green   },
-	[SchemeCyan]     = { col_cyan,  col_background,   col_gray2    },
-	[SchemeOrange]   = { col_orange,col_background,   col_gray2    },
-	[SchemePink]     = { col_pink,  col_background,   col_gray2    },
-	[SchemePurple]   = { col_purple,col_background,   col_gray2    },
-	[SchemeGreen]    = { col_green, col_background,   col_gray2    },
-	[SchemeYellow]   = { col_yellow,col_background,   col_gray2    },
-	[SchemeRed]      = { col_red,   col_background,   col_gray2    },
-	[SchemeStatus]   = { col_gray4, col_background,   col_background   },
-	[SchemeTagsSel]  = { col_white, col_cyan_dim,     col_gray2  }, // Tagbar left selected {text,background,not used but cannot be empty}
-	     [SchemeTagsNorm] = { col_gray4, col_background,   "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
-	     [SchemeInfoSel]  = { col_white, col_background,   "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
-	     [SchemeInfoNorm] = { col_cyan_dim, col_background,"#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
+	[SchemeNorm]     = { col_foreground, col_background,   col_gray2        },
+	[SchemeSel]      = { col_gray2,      col_background,   col_green        },
+	[SchemeCyan]     = { col_cyan,       col_background,   col_gray2        },
+	[SchemeOrange]   = { col_orange,     col_background,   col_gray2        },
+	[SchemePink]     = { col_pink,       col_background,   col_gray2        },
+	[SchemePurple]   = { col_purple,     col_background,   col_gray2        },
+	[SchemeGreen]    = { col_green,      col_background,   col_gray2        },
+	[SchemeYellow]   = { col_yellow,     col_background,   col_gray2        },
+	[SchemeRed]      = { col_red,        col_background,   col_gray2        },
+	[SchemeStatus]   = { col_foreground, col_background,   col_background   },
+	[SchemeTagsSel]  = { col_foreground, col_red,          col_gray2        }, // Tagbar left selected {text,background,not used but cannot be empty}
+	[SchemeTagsNorm] = { col_gray2,      col_background,   "#000000"        }, // Tagbar left unselected {text,background,not used but cannot be empty}
+	[SchemeInfoSel]  = { col_foreground, col_background,   "#000000"        }, // infobar middle  selected {text,background,not used but cannot be empty}
+	[SchemeInfoNorm] = { col_cyan_dim,   col_background,   "#000000"        }, // infobar middle  unselected {text,background,not used but cannot be empty}
 };
 
 static const unsigned int alphas[][3]      = {
