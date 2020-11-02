@@ -5,7 +5,7 @@
 #define TERMCLASS "St"
 
 /* appearance */
-static const unsigned int borderpx  = 0;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int gappx     = 10;        /* gaps between windows */
 static const unsigned int snap      = 24;       /* snap pixel */
 static const int swallowfloating    = 1;        /* 1 means swallow floating windows by default */
@@ -134,7 +134,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_h,         setmfact,       {.f = -0.05} },    // Decrease master window size
 	{ MODKEY,                       XK_l,         setmfact,       {.f = +0.05} },    // Increase master window size
 	{ MODKEY|ShiftMask,             XK_l,         spawn,          SHCMD("slock") },    // Lock the screen; type passwd to unlock
-	{ MODKEY|ShiftMask,             XK_Return,    zoom,           {0} },
+	{ MODKEY|ShiftMask,             XK_Return,    zoom,           {0} }, // make focused window master
 	{ MODKEY|ShiftMask,             XK_a,         spawn,          SHCMD("myconfigs") }, // Open menu to edit config files
 	{ MODKEY|ShiftMask,             XK_BackSpace, spawn,          SHCMD("sysact") },    // System shutdown menu
 	{ MODKEY,                       XK_minus,     spawn,          SHCMD("pamixer --allow-boost -d 5; kill -44 $(pidof dwmblocks)") },    // Volume down 5
@@ -147,7 +147,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Delete,    spawn,          SHCMD("dmenurecord kill") },    // stops recording
 	{ MODKEY,                       XK_Scroll_Lock, spawn,        SHCMD("killall screenkey || screenkey &") },    // restart screenkey
 	{ MODKEY,                       XK_grave,     spawn,          SHCMD(TERMINAL " lastpass-dmenu copy") },
-	{ MODKEY,                       XK_v,         spawn,          SHCMD(TERMINAL " -e nvim -c VimwikiIndex") },
+	{ MODKEY,                       XK_v,         spawn,          SHCMD(TERMINAL " -e nvim Maja/notes.adoc") },
 	{ MODKEY,                       XK_n,         spawn,          SHCMD(TERMINAL " -e newsboat") },    // open newsboat
 	{ MODKEY,                       XK_Tab,       view,           {0} },    // return to previous tag
 	{ MODKEY,                       XK_t,         setlayout,      {.v = &layouts[0]} },    // set tiling window layout
