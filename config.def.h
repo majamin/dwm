@@ -20,7 +20,7 @@ static const char col_gray4[]       = "#eeeeee";
 static const char col_foreground[]  = "#111111";
 static const char col_background[]  = "#bbbbbb";
 
-static const char col_cyan[]		= "#8be9fd";
+static const char col_cyan[]		= "#007ff5";
 static const char col_cyan_dim[]	= "#548e99";
 static const char col_green[]		= "#50fa7b";
 static const char col_orange[]		= "#ffb86c";
