@@ -114,17 +114,18 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont };
 static const char *termcmd[]  = { TERMINAL, NULL };
-static const char *filecmd[]  = { "nautilus", NULL };
+static const char scratchpadname[] = "scratchpad";
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "40x20-1-1", NULL };
 
 #include <X11/XF86keysym.h>
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,         spawn,          {.v = dmenucmd } },    // open program with dmenu
 	{ MODKEY,                       XK_Return,    spawn,          {.v = termcmd } },    // open terminal
+	{ MODKEY,                       XK_grave,     togglescratch,  {.v = scratchpadcmd } }, // open scratchpad terminal
 	{ MODKEY,                       XK_b,         togglebar,      {0} },    // toggle statusbar
 	{ MODKEY,                       XK_j,         focusstack,     {.i = +1 } },    // focus on window up in stack
 	{ MODKEY,                       XK_k,         focusstack,     {.i = -1 } },    // focus on window down in stack
-	{ MODKEY,                       XK_e,         spawn,          {.v = filecmd } },    // Opens a file manager
 	{ MODKEY,                       XK_w,         spawn,          SHCMD("$BROWSER") },    // Opens browser
 	{ MODKEY,                       XK_y,         spawn,          SHCMD("clipyt play") },    // Open video URL from clipboard
 	{ MODKEY,                       XK_z,         spawn,          SHCMD("st -n xzoom -e 'slop | xargs xzoom -source'") },    // zoom in on a mouse-selected area
@@ -146,7 +147,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Print,     spawn,          SHCMD("dmenurecord") },    // select screen recording
 	{ MODKEY,                       XK_Delete,    spawn,          SHCMD("dmenurecord kill") },    // stops recording
 	{ MODKEY,                       XK_Scroll_Lock, spawn,        SHCMD("killall screenkey || screenkey &") },    // restart screenkey
-	{ MODKEY,                       XK_grave,     spawn,          SHCMD(TERMINAL " lastpass-dmenu copy") },
 	{ MODKEY,                       XK_v,         spawn,          SHCMD(TERMINAL " -e nvim Maja/notes.adoc") },
 	{ MODKEY,                       XK_n,         spawn,          SHCMD(TERMINAL " -e newsboat") },    // open newsboat
 	{ MODKEY,                       XK_Tab,       view,           {0} },    // return to previous tag
