@@ -127,7 +127,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_j,         focusstack,     {.i = +1 } },    // focus on window up in stack
 	{ MODKEY,                       XK_k,         focusstack,     {.i = -1 } },    // focus on window down in stack
 	{ MODKEY,                       XK_w,         spawn,          SHCMD("$BROWSER") },    // Opens browser
-	{ MODKEY,                       XK_y,         spawn,          SHCMD("clipyt play") },    // Open video URL from clipboard
+	{ MODKEY,                       XK_y,         spawn,          SHCMD("clipyt") },    // Open video URL from clipboard
 	{ MODKEY,                       XK_z,         spawn,          SHCMD("st -n xzoom -e 'slop | xargs xzoom -source'") },    // zoom in on a mouse-selected area
 	{ MODKEY,                       XK_q,         killclient,     {0} },    // Forceably close client (window)
 	{ MODKEY,                       XK_i,         incnmaster,     {.i = +1 } },    // Move window up in stack
