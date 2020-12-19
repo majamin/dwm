@@ -147,7 +147,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Print,     spawn,          SHCMD("dmenurecord") },    // select screen recording
 	{ MODKEY,                       XK_Delete,    spawn,          SHCMD("dmenurecord kill") },    // stops recording
 	{ MODKEY,                       XK_Scroll_Lock, spawn,        SHCMD("killall screenkey || screenkey &") },    // restart screenkey
-	{ MODKEY,                       XK_v,         spawn,          SHCMD(TERMINAL " -e nvim Maja/notes.adoc") },
+	{ MODKEY,                       XK_v,         spawn,          SHCMD(TERMINAL " -e nvim -c VimwikiIndex") },
 	{ MODKEY,                       XK_n,         spawn,          SHCMD(TERMINAL " -e newsboat") },    // open newsboat
 	{ MODKEY,                       XK_Tab,       view,           {0} },    // return to previous tag
 	{ MODKEY,                       XK_t,         setlayout,      {.v = &layouts[0]} },    // set tiling window layout
