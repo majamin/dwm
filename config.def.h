@@ -75,7 +75,7 @@ static const unsigned int alphas[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "❶", "❷", "❸", "❹", "❺"};
+static const char *tags[] = { "❶", "❷", "❸", "❹"};
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -83,13 +83,11 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class     instance         title             tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "Gimp",    NULL,            NULL,             0,         1,          0,           0,        -1 },
-	{ "Brave",   NULL,            NULL,             1 << 4,    0,          0,           1,        -1 },
+	{ "Gimp",    NULL,            NULL,             1 << 2,    0,          0,           1,        -1 },
+	{ "Brave",   NULL,            NULL,             1 << 3,    0,          0,           1,        -1 },
 	{ "St",      NULL,            NULL,             0,         0,          1,           0,        -1 },
-	{ "mpv",     NULL,            NULL,             0,         1,          0,           1,        -1 },
 	{ NULL,      NULL,            "Event Tester",   0,         1,          0,           1,        -1 }, /* xev */
-	{ NULL,      NULL,            "pygame window",  0,         1,          0,           1,        -1 }, /* pygame things */
-	{ NULL,      "xzoom",         NULL,             0,         1,          0,           1,        -1 },
+	{ NULL,      NULL,            "mpv-clipyt",     0,         1,          0,           1,        -1 },
 };
 
 /* layout(s) */
