@@ -5,33 +5,33 @@
 #define TERMCLASS "St"
 
 /* appearance */
-static const unsigned int borderpx  = 5;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int gappx     = 10;        /* gaps between windows */
 static const unsigned int snap      = 24;       /* snap pixel */
 static const int swallowfloating    = 1;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "DejaVu:size=12", "JoyPixels:pixelsize=12" };
-static const char dmenufont[]       = "monospace:size=12";
+static const char dmenufont[]       = "monospace:size=14";
 static const char col_grey[]        = "#888888";
 
 /*
  * Colors from https://www.w3schools.com/colors/colors_compound.asp
  */
-static const char col_bg1[]		= "#ebf1fb";
-static const char col_fg1[]		= "#135feb";
-static const char col_bg2[]		= "#ffc42e";
-static const char col_fg2[]		= "#760dc6";
-static const char col_dark[]		= "#230a37";
+//static const char col_bg1[]		= "#ebf1fb";
+//static const char col_fg1[]		= "#135feb";
+//static const char col_bg2[]		= "#ffc42e";
+//static const char col_fg2[]		= "#760dc6";
+//static const char col_dark[]		= "#230a37";
 
 /*
  * Colors from https://www.w3schools.com/colors/colors_compound.asp
  */
-//static const char col_bg1[]		= "#f5f7d4";
-//static const char col_fg1[]		= "#d61a46";
-//static const char col_bg2[]		= "#e4f132";
-//static const char col_fg2[]		= "#559e54";
-//static const char col_dark[]		= "#0a3409";
+static const char col_bg1[]		= "#f5f7d4";
+static const char col_fg1[]		= "#d61a46";
+static const char col_bg2[]		= "#e4f132";
+static const char col_fg2[]		= "#559e54";
+static const char col_dark[]		= "#0a3409";
 
 /*
  * Colors from https://www.w3schools.com/colors/colors_compound.asp
@@ -48,7 +48,7 @@ static const unsigned int borderalpha = OPAQUE; // don't make borders transparen
 
 static const char *colors[][3]      = {
 	/*                   fg        bg         border         */
-	[SchemeNorm]     = { col_dark, col_bg1,   col_dark        },
+	[SchemeNorm]     = { col_dark, col_bg1,                   },
 	[SchemeSel]      = { col_dark, col_bg1,   col_bg2         },
 	[SchemeOne]      = { col_dark, col_bg1,   col_dark        },
 	[SchemeTwo]      = { col_fg2,  col_bg1,   col_dark        },
@@ -115,7 +115,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg1, "-nf", col_dark, "-sb", col_bg2, "-sf", col_dark, NULL };
 static const char *termcmd[]  = { TERMINAL, NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "40x20-1-1", NULL };
