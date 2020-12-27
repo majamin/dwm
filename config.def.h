@@ -127,8 +127,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_j,         focusstack,     {.i = +1 } },    // focus on window up in stack
 	{ MODKEY,                       XK_k,         focusstack,     {.i = -1 } },    // focus on window down in stack
 	{ MODKEY,                       XK_w,         spawn,          SHCMD("$BROWSER") },    // Opens browser
-	{ MODKEY,                       XK_y,         spawn,          SHCMD("clipyt") },    // Open video URL from clipboard
-	{ MODKEY,                       XK_z,         spawn,          SHCMD("st -n xzoom -e 'slop | xargs xzoom -source'") },    // zoom in on a mouse-selected area
+	{ MODKEY,                       XK_y,         spawn,          SHCMD("clipyt") },    // Play clipboard and on-disk media all-in-one
+	{ MODKEY,                       XK_slash,     spawn,          SHCMD("clipyt -p") },    // Pause/play spawned clipyt
 	{ MODKEY,                       XK_q,         killclient,     {0} },    // Forceably close client (window)
 	{ MODKEY,                       XK_i,         incnmaster,     {.i = +1 } },    // Move window up in stack
 	{ MODKEY,                       XK_d,         incnmaster,     {.i = -1 } },    // Move window down in stack
@@ -136,7 +136,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l,         setmfact,       {.f = +0.05} },    // Increase master window size
 	{ MODKEY|ShiftMask,             XK_l,         spawn,          SHCMD("slock") },    // Lock the screen; type passwd to unlock
 	{ MODKEY|ShiftMask,             XK_Return,    zoom,           {0} }, // make focused window master
-	{ MODKEY|ShiftMask,             XK_a,         spawn,          SHCMD("myconfigs") }, // Open menu to edit config files
 	{ MODKEY|ShiftMask,             XK_BackSpace, spawn,          SHCMD("sysact") },    // System shutdown menu
 	{ MODKEY,                       XK_minus,     spawn,          SHCMD("pamixer --allow-boost -d 5; kill -44 $(pidof dwmblocks)") },    // Volume down 5
 	{ MODKEY|ShiftMask,             XK_minus,     spawn,          SHCMD("pamixer --allow-boost -d 15; kill -44 $(pidof dwmblocks)") },    // Volume down 15
