@@ -11,18 +11,9 @@ static const unsigned int snap      = 24;       /* snap pixel */
 static const int swallowfloating    = 1;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "DejaVu:size=14", "JoyPixels:pixelsize=14" };
-static const char dmenufont[]       = "monospace:size=14";
-static const char col_grey[]		= "#aaaaaa";
-
-/*
- * Colors from https://www.w3schools.com/colors/colors_compound.asp
- */
-//static const char col_bg1[]		= "#f2f5c8";
-//static const char col_fg1[]		= "#519850";
-//static const char col_bg2[]		= "#e3f02a";
-//static const char col_fg2[]		= "#cf1a44";
-//static const char col_dark[]		= "#0a3209";
+static const char *fonts[]          = { "DejaVu:size=12", "JoyPixels:pixelsize=12" };
+static const char dmenufont[]       = "monospace:size=12";
+static const char col_grey[]        = "#888888";
 
 /*
  * Colors from https://www.w3schools.com/colors/colors_compound.asp
@@ -33,6 +24,23 @@ static const char col_bg2[]		= "#ffc42e";
 static const char col_fg2[]		= "#760dc6";
 static const char col_dark[]		= "#230a37";
 
+/*
+ * Colors from https://www.w3schools.com/colors/colors_compound.asp
+ */
+//static const char col_bg1[]		= "#f5f7d4";
+//static const char col_fg1[]		= "#d61a46";
+//static const char col_bg2[]		= "#e4f132";
+//static const char col_fg2[]		= "#559e54";
+//static const char col_dark[]		= "#0a3409";
+
+/*
+ * Colors from https://www.w3schools.com/colors/colors_compound.asp
+ */
+//static const char col_bg1[]		= "#e3f7d4";
+//static const char col_fg1[]		= "#66b032";
+//static const char col_bg2[]		= "#8601af";
+//static const char col_fg2[]		= "#fb9902";
+//static const char col_dark[]		= "#2a0934";
 
 static const unsigned int baralpha = 0xd0;
 //static const unsigned int baralpha = 0x10;
@@ -41,7 +49,7 @@ static const unsigned int borderalpha = OPAQUE; // don't make borders transparen
 static const char *colors[][3]      = {
 	/*                   fg        bg         border         */
 	[SchemeNorm]     = { col_dark, col_bg1,   col_dark        },
-	[SchemeSel]      = { col_dark, col_bg1,   col_fg1         },
+	[SchemeSel]      = { col_dark, col_bg1,   col_bg2         },
 	[SchemeOne]      = { col_dark, col_bg1,   col_dark        },
 	[SchemeTwo]      = { col_fg2,  col_bg1,   col_dark        },
 	[SchemeThree]    = { col_fg1,  col_bg1,   col_dark        },
