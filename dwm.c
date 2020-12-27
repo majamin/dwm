@@ -63,10 +63,18 @@
 
 /* enums */
 enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
-enum { SchemeNorm, SchemeSel, SchemeCyan, SchemeOrange,
-	SchemePink, SchemePurple, SchemeGreen, SchemeYellow, SchemeRed,
-	SchemeStatus, SchemeTagsSel, SchemeTagsNorm,
-	SchemeInfoSel, SchemeInfoNorm }; /* color schemes */
+enum {
+	SchemeNorm,
+	SchemeSel,
+	SchemeOne,
+	SchemeTwo,
+	SchemeThree,
+	SchemeStatus,
+	SchemeTagsSel,
+	SchemeTagsNorm,
+	SchemeInfoSel,
+	SchemeInfoNorm,
+}; /* color schemes */
 enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
        NetWMFullscreen, NetActiveWindow, NetWMWindowType,
        NetWMWindowTypeDialog, NetClientList, NetLast }; /* EWMH atoms */
@@ -858,7 +866,7 @@ drawbar(Monitor *m)
 		x += w;
 	}
 	w = blw = TEXTW(m->ltsymbol);
-	drw_setscheme(drw, scheme[SchemeTagsNorm]);
+	drw_setscheme(drw, scheme[SchemeNorm]);
 	x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
 
 	if ((w = m->ww - tw - x) > bh) {
@@ -1744,7 +1752,7 @@ setup(void)
 	if (!drw_fontset_create(drw, fonts, LENGTH(fonts)))
 		die("no fonts could be loaded.");
 	lrpad = drw->fonts->h;
-	bh = drw->fonts->h + 4;
+	bh = drw->fonts->h + 6;
 	updategeom();
 	/* init atoms */
 	utf8string = XInternAtom(dpy, "UTF8_STRING", False);

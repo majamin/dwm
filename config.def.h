@@ -5,64 +5,61 @@
 #define TERMCLASS "St"
 
 /* appearance */
-static const unsigned int borderpx  = 3;        /* border pixel of windows */
+static const unsigned int borderpx  = 5;        /* border pixel of windows */
 static const unsigned int gappx     = 10;        /* gaps between windows */
 static const unsigned int snap      = 24;       /* snap pixel */
 static const int swallowfloating    = 1;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=14", "JoyPixels:pixelsize=12" };
+static const char *fonts[]          = { "DejaVu:size=14", "JoyPixels:pixelsize=14" };
 static const char dmenufont[]       = "monospace:size=14";
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#3c3836";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_foreground[]  = "#111111";
-static const char col_background[]  = "#bbbbbb";
+static const char col_grey[]		= "#aaaaaa";
 
-static const char col_cyan[]		= "#007ff5";
-static const char col_cyan_dim[]	= "#548e99";
-static const char col_green[]		= "#50fa7b";
-static const char col_orange[]		= "#ffb86c";
-static const char col_pink[]		= "#ff79c6";
-static const char col_purple[]		= "#bd93f9";
-static const char col_red[]		= "#ff5555";
-static const char col_yellow[]		= "#f1fa8c";
+/*
+ * Colors from https://www.w3schools.com/colors/colors_compound.asp
+ */
+//static const char col_bg1[]		= "#f2f5c8";
+//static const char col_fg1[]		= "#519850";
+//static const char col_bg2[]		= "#e3f02a";
+//static const char col_fg2[]		= "#cf1a44";
+//static const char col_dark[]		= "#0a3209";
+
+/*
+ * Colors from https://www.w3schools.com/colors/colors_compound.asp
+ */
+static const char col_bg1[]		= "#ebf1fb";
+static const char col_fg1[]		= "#135feb";
+static const char col_bg2[]		= "#ffc42e";
+static const char col_fg2[]		= "#760dc6";
+static const char col_dark[]		= "#230a37";
+
 
 static const unsigned int baralpha = 0xd0;
 //static const unsigned int baralpha = 0x10;
 static const unsigned int borderalpha = OPAQUE; // don't make borders transparent
 
 static const char *colors[][3]      = {
-	/*                   fg         bg              border   */
-	[SchemeNorm]     = { col_foreground, col_background,   col_gray2        },
-	[SchemeSel]      = { col_gray2,      col_background,   col_green        },
-	[SchemeCyan]     = { col_cyan,       col_background,   col_gray2        },
-	[SchemeOrange]   = { col_orange,     col_background,   col_gray2        },
-	[SchemePink]     = { col_pink,       col_background,   col_gray2        },
-	[SchemePurple]   = { col_purple,     col_background,   col_gray2        },
-	[SchemeGreen]    = { col_green,      col_background,   col_gray2        },
-	[SchemeYellow]   = { col_yellow,     col_background,   col_gray2        },
-	[SchemeRed]      = { col_red,        col_background,   col_gray2        },
-	[SchemeStatus]   = { col_foreground, col_background,   col_background   },
-	[SchemeTagsSel]  = { col_foreground, col_red,          col_gray2        }, // Tagbar left selected {text,background,not used but cannot be empty}
-	[SchemeTagsNorm] = { col_gray2,      col_background,   "#000000"        }, // Tagbar left unselected {text,background,not used but cannot be empty}
-	[SchemeInfoSel]  = { col_foreground, col_background,   "#000000"        }, // infobar middle  selected {text,background,not used but cannot be empty}
-	[SchemeInfoNorm] = { col_cyan_dim,   col_background,   "#000000"        }, // infobar middle  unselected {text,background,not used but cannot be empty}
+	/*                   fg        bg         border         */
+	[SchemeNorm]     = { col_dark, col_bg1,   col_dark        },
+	[SchemeSel]      = { col_dark, col_bg1,   col_fg1         },
+	[SchemeOne]      = { col_dark, col_bg1,   col_dark        },
+	[SchemeTwo]      = { col_fg2,  col_bg1,   col_dark        },
+	[SchemeThree]    = { col_fg1,  col_bg1,   col_dark        },
+	[SchemeStatus]   = { col_dark, col_bg1,   col_dark        },
+	[SchemeTagsSel]  = { col_dark, col_bg1,   col_dark        }, // Tagbar left selected {text,background,not used but cannot be empty}
+	[SchemeTagsNorm] = { col_grey, col_bg1,   "#000000"       }, // Tagbar left unselected {text,background,not used but cannot be empty}
+	[SchemeInfoSel]  = { col_dark, col_bg1,   "#000000"       }, // infobar middle  selected {text,background,not used but cannot be empty}
+	[SchemeInfoNorm] = { col_dark, col_bg1,   "#000000"       }, // infobar middle  unselected {text,background,not used but cannot be empty}
 };
 
 static const unsigned int alphas[][3]      = {
 	/*               fg      bg        border     */
 	[SchemeNorm]     = { OPAQUE, baralpha, borderalpha },
 	[SchemeSel]      = { OPAQUE, baralpha, borderalpha },
-	[SchemeCyan]     = { OPAQUE, baralpha, borderalpha },
-	[SchemeOrange]   = { OPAQUE, baralpha, borderalpha },
-	[SchemePink]     = { OPAQUE, baralpha, borderalpha },
-	[SchemePurple]   = { OPAQUE, baralpha, borderalpha },
-	[SchemeGreen]    = { OPAQUE, baralpha, borderalpha },
-	[SchemeYellow]   = { OPAQUE, baralpha, borderalpha },
-	[SchemeRed]      = { OPAQUE, baralpha, borderalpha },
 	[SchemeStatus]   = { OPAQUE, baralpha, borderalpha },
+	[SchemeOne]      = { OPAQUE, baralpha, borderalpha },
+	[SchemeTwo]      = { OPAQUE, baralpha, borderalpha },
+	[SchemeThree]    = { OPAQUE, baralpha, borderalpha },
 	[SchemeTagsSel]  = { OPAQUE, baralpha, borderalpha },
 	[SchemeTagsNorm] = { OPAQUE, baralpha, borderalpha },
 	[SchemeInfoSel]  = { OPAQUE, baralpha, borderalpha },
@@ -70,7 +67,7 @@ static const unsigned int alphas[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "❶", "❷", "❸", "❹", "❺"};
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -79,7 +76,7 @@ static const Rule rules[] = {
 	 */
 	/* class     instance         title             tags mask  isfloating  isterminal  noswallow  monitor */
 	{ "Gimp",    NULL,            NULL,             0,         1,          0,           0,        -1 },
-	{ "Brave",   NULL,            NULL,             1 << 8,    0,          0,           1,        -1 },
+	{ "Brave",   NULL,            NULL,             1 << 4,    0,          0,           1,        -1 },
 	{ "St",      NULL,            NULL,             0,         0,          1,           0,        -1 },
 	{ "mpv",     NULL,            NULL,             0,         1,          0,           1,        -1 },
 	{ NULL,      NULL,            "Event Tester",   0,         1,          0,           1,        -1 }, /* xev */
@@ -94,9 +91,9 @@ static const int resizehints = 0;    /* 1 means respect size hints in tiled resi
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "",      tile },    /* first entry is default */
-	{ "",      NULL },    /* no layout function means floating behavior */
-	{ "",      monocle },
+	{ "",      tile },    /* first entry is default */
+	{ "",      NULL },    /* no layout function means floating behavior */
+	{ "",      monocle },
 };
 
 /* key definitions */
