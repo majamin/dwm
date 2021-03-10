@@ -18,20 +18,20 @@ static const char col_grey[]        = "#888888";
 /*
  * Colors from https://www.w3schools.com/colors/colors_compound.asp
  */
-//static const char col_bg1[]		= "#ebf1fb";
-//static const char col_fg1[]		= "#135feb";
-//static const char col_bg2[]		= "#ffc42e";
-//static const char col_fg2[]		= "#760dc6";
-//static const char col_dark[]		= "#230a37";
+static const char col_bg1[]		= "#ebf1fb";
+static const char col_fg1[]		= "#135feb";
+static const char col_bg2[]		= "#ffc42e";
+static const char col_fg2[]		= "#760dc6";
+static const char col_dark[]		= "#230a37";
 
 /*
  * Colors from https://www.w3schools.com/colors/colors_compound.asp
  */
-static const char col_bg1[]		= "#f5f7d4";
-static const char col_fg1[]		= "#d61a46";
-static const char col_bg2[]		= "#e4f132";
-static const char col_fg2[]		= "#559e54";
-static const char col_dark[]		= "#0a3409";
+//static const char col_bg1[]		= "#f5f7d4";
+//static const char col_fg1[]		= "#d61a46";
+//static const char col_bg2[]		= "#e4f132";
+//static const char col_fg2[]		= "#559e54";
+//static const char col_dark[]		= "#0a3409";
 
 /*
  * Colors from https://www.w3schools.com/colors/colors_compound.asp
@@ -151,6 +151,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Scroll_Lock, spawn,        SHCMD("killall screenkey || screenkey &") },    // restart screenkey
 	{ MODKEY,                       XK_v,         spawn,          SHCMD(TERMINAL " -e nvim -c VimwikiIndex") },
 	{ MODKEY,                       XK_n,         spawn,          SHCMD(TERMINAL " -e newsboat") },    // open newsboat
+	{ MODKEY,                       XK_semicolon, spawn,          SHCMD("dmenuunicode") },    // open unicode menu
 	{ MODKEY,                       XK_Tab,       view,           {0} },    // return to previous tag
 	{ MODKEY,                       XK_t,         setlayout,      {.v = &layouts[0]} },    // set tiling window layout
 	{ MODKEY,                       XK_f,         setlayout,      {.v = &layouts[1]} },    // set floating window layout
