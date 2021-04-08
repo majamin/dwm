@@ -85,8 +85,10 @@ static const Rule rules[] = {
 	/* class     instance         title             tags mask  isfloating  isterminal  noswallow  monitor */
 	{ "Gimp",    NULL,            NULL,             1 << 2,    0,          0,           1,        -1 },
 	{ "Brave",   NULL,            NULL,             1 << 3,    0,          0,           1,        -1 },
+	{ "Firefox", NULL,            NULL,             1 << 3,    0,          0,           1,        -1 },
 	{ "St",      NULL,            NULL,             0,         0,          1,           0,        -1 },
 	{ NULL,      NULL,            "Event Tester",   0,         1,          0,           1,        -1 }, /* xev */
+	{ NULL,      NULL,            "xzoom",          0,         1,          0,           1,        -1 },
 	{ NULL,      NULL,            "mpv-clipyt",     0,         1,          0,           1,        -1 },
 };
 
