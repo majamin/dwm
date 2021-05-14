@@ -88,6 +88,9 @@ static const Rule rules[] = {
 	{ "Firefox", NULL,            NULL,             1 << 3,    0,          0,           1,        -1 },
 	{ "St",      NULL,            NULL,             0,         0,          1,           0,        -1 },
 	{ NULL,      NULL,            "Event Tester",   0,         1,          0,           1,        -1 }, /* xev */
+	{ NULL,      NULL,            "droidcam-cli",   0,         1,          0,           1,        -1 },
+	{ NULL,      NULL,            "/dev/video0",   0,         1,          0,           1,        -1 },
+	{ NULL,      NULL,            "ffplay",   0,         1,          0,           1,        -1 },
 	{ NULL,      NULL,            "xzoom",          0,         1,          0,           1,        -1 },
 	{ NULL,      NULL,            "mpv-clipyt",     0,         1,          0,           1,        -1 },
 };
@@ -146,7 +149,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_minus,     spawn,          SHCMD("pamixer --allow-boost -d 15; kill -44 $(pidof dwmblocks)") },    // Volume down 15
 	{ MODKEY,                       XK_equal,     spawn,          SHCMD("pamixer --allow-boost -i 5; kill -44 $(pidof dwmblocks)") },    // Volume up 5
 	{ MODKEY|ShiftMask,             XK_equal,     spawn,          SHCMD("pamixer --allow-boost -i 15; kill -44 $(pidof dwmblocks)") },    // Volume up 15
-	{ 0,                            XK_Print,     spawn,          SHCMD("maim pic-full-$(date '+%y%m%d-%H%M-%S').png") },    // Take a screenshot; placed in home directory
+	{ 0,                            XK_Print,     spawn,          SHCMD("maim -sluc 0.5,0.5,0.5,0.1 \"$SCREENSHOT_DIR/pic-selected-$(date '+%y%m%d-%H%M-%S').png\"") },    // Take a screenshot - placed in $SCREENSHOT_DIR or $HOME
 	{ ShiftMask,                    XK_Print,     spawn,          SHCMD("maimpick") },    // select screenshot type
 	{ MODKEY,                       XK_Print,     spawn,          SHCMD("dmenurecord") },    // select screen recording
 	{ MODKEY,                       XK_Delete,    spawn,          SHCMD("dmenurecord kill") },    // stops recording
