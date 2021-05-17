@@ -149,8 +149,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_minus,     spawn,          SHCMD("pamixer --allow-boost -d 15; kill -44 $(pidof dwmblocks)") },    // Volume down 15
 	{ MODKEY,                       XK_equal,     spawn,          SHCMD("pamixer --allow-boost -i 5; kill -44 $(pidof dwmblocks)") },    // Volume up 5
 	{ MODKEY|ShiftMask,             XK_equal,     spawn,          SHCMD("pamixer --allow-boost -i 15; kill -44 $(pidof dwmblocks)") },    // Volume up 15
-	{ 0,                            XK_Print,     spawn,          SHCMD("maim -sluc 0.5,0.5,0.5,0.1 \"$SCREENSHOT_DIR/pic-selected-$(date '+%y%m%d-%H%M-%S').png\" && notify-send 'Screenshot saved to $SCREENSHOT dir'") },    // Take a screenshot - placed in $SCREENSHOT_DIR or $HOME
-	{ ShiftMask,                    XK_Print,     spawn,          SHCMD("maimpick") },    // select screenshot type
+	{ 0,                            XK_Print,     spawn,          SHCMD("maimpick") },    // take a screenshot (saves and copies)
 	{ MODKEY,                       XK_Print,     spawn,          SHCMD("dmenurecord") },    // select screen recording
 	{ MODKEY,                       XK_Delete,    spawn,          SHCMD("dmenurecord kill") },    // stops recording
 	{ MODKEY,                       XK_Scroll_Lock, spawn,        SHCMD("killall screenkey || screenkey &") },    // restart screenkey
@@ -172,6 +171,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,     tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period,    tagmon,         {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_q,         quit,           {0} },
+	{ MODKEY,                       XK_F12,       spawn,          SHCMD("dmenumount") },    // mount a device
+	{ MODKEY|ShiftMask,             XK_F12,       spawn,          SHCMD("dmenuumount") },    // unmount a device
 	{ 0,                            XF86XK_AudioMute,         spawn,  SHCMD("pamixer -t; kill -44 $(pidof dwmblocks)") },
 	{ 0,                            XF86XK_AudioRaiseVolume,  spawn,  SHCMD("pamixer --allow-boost -i 5; kill -44 $(pidof dwmblocks)") },
 	{ 0,                            XF86XK_AudioLowerVolume,  spawn,  SHCMD("pamixer --allow-boost -d 5; kill -44 $(pidof dwmblocks)") },
