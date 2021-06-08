@@ -87,10 +87,11 @@ static const Rule rules[] = {
 	{ "Brave",   NULL,            NULL,             1 << 3,    0,          0,           1,        -1 },
 	{ "Firefox", NULL,            NULL,             1 << 3,    0,          0,           1,        -1 },
 	{ "St",      NULL,            NULL,             0,         0,          1,           0,        -1 },
+	{ "Nautilus",NULL,            NULL,             0,         1,          0,           1,        -1 },
 	{ NULL,      NULL,            "Event Tester",   0,         1,          0,           1,        -1 }, /* xev */
 	{ NULL,      NULL,            "droidcam-cli",   0,         1,          0,           1,        -1 },
-	{ NULL,      NULL,            "/dev/video0",   0,         1,          0,           1,        -1 },
-	{ NULL,      NULL,            "ffplay",   0,         1,          0,           1,        -1 },
+	{ NULL,      NULL,            "/dev/video0",    0,         1,          0,           1,        -1 },
+	{ NULL,      NULL,            "ffplay",         0,         1,          0,           1,        -1 },
 	{ NULL,      NULL,            "xzoom",          0,         1,          0,           1,        -1 },
 	{ NULL,      NULL,            "mpv-clipyt",     0,         1,          0,           1,        -1 },
 };
@@ -137,6 +138,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_w,         spawn,          SHCMD("$BROWSER") },    // Opens browser
 	{ MODKEY,                       XK_y,         spawn,          SHCMD("clipyt") },    // Play clipboard and on-disk media all-in-one
 	{ MODKEY,                       XK_slash,     spawn,          SHCMD("clipyt -p") },    // Pause/play spawned clipyt
+	{ MODKEY,                       XK_e,         spawn,          SHCMD("nautilus") },    // Nautilus file manager
 	{ MODKEY,                       XK_q,         killclient,     {0} },    // Forceably close client (window)
 	{ MODKEY,                       XK_i,         incnmaster,     {.i = +1 } },    // Move window up in stack
 	{ MODKEY,                       XK_d,         incnmaster,     {.i = -1 } },    // Move window down in stack
