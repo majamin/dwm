@@ -822,13 +822,7 @@ drawbar(Monitor *m)
 
 	/* draw status first so it can be overdrawn by tags later */
 	if (m == selmon) { /* status is only drawn on selected monitor */
-<<<<<<< HEAD
-		tw = m->ww - drawstatusbar(m, bh, stext);
-=======
-		drw_setscheme(drw, scheme[SchemeNorm]);
-		tw = TEXTW(stext) - lrpad + 2; /* 2px right padding */
-  	drw_text(drw, m->ww - sw - 2 * sp, 0, sw, bh, 0, stext, 0);
->>>>>>> barpadding
+		tw = m->ww - drawstatusbar(m, bh, stext) - lrpad + 2;
 	}
 
 	for (c = m->clients; c; c = c->next) {
