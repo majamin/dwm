@@ -1,13 +1,15 @@
 /* See LICENSE file for copyright and license details. */
+#define GAP 10
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int gappx     = GAP;      /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = {"Iosevka:style:medium:size=16" ,"JetBrainsMono Nerd Font:style:medium:size=16", "Material Design Icons Desktop:size=16" };
-static const int vertpad            = 10;       /* vertical padding of bar */
-static const int sidepad            = 10;       /* horizontal padding of bar */
+static const int vertpad            = GAP;      /* vertical padding of bar */
+static const int sidepad            = GAP;      /* horizontal padding of bar */
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#1e222a";
 static const char col_gray2[]       = "#2e323a";
@@ -87,6 +89,9 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
+	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
