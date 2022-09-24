@@ -10,6 +10,8 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = {"Iosevka:style:medium:size=16" ,"JetBrainsMono Nerd Font:style:medium:size=16", "Material Design Icons Desktop:size=16" };
 static const int vertpad            = GAP;      /* vertical padding of bar */
 static const int sidepad            = GAP;      /* horizontal padding of bar */
+static const int horizpadbar        = 15;        /* horizontal padding for statusbar */
+static const int vertpadbar         = 15;        /* vertical padding for statusbar */
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#1e222a";
 static const char col_gray2[]       = "#2e323a";
@@ -23,7 +25,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "1", "2", "3", "4" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -32,7 +34,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "microsoft-edge", NULL, NULL,       1 << 3,       0,           -1 },
 };
 
 /* layout(s) */
