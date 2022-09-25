@@ -12,7 +12,7 @@ static const int vertpad            = GAP;      /* vertical padding of bar */
 static const int sidepad            = GAP;      /* horizontal padding of bar */
 static const int horizpadbar        = 15;        /* horizontal padding for statusbar */
 static const int vertpadbar         = 15;        /* vertical padding for statusbar */
-static const char dmenufont[]       = "monospace:size=10";
+static const char dmenufont[]       ="Iosevka:style:medium:size=16" ;
 static const char col_gray1[]       = "#1e222a";
 static const char col_gray2[]       = "#2e323a";
 static const char col_gray3[]       = "#abb2bf";
