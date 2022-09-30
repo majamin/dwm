@@ -1,21 +1,21 @@
 /* See LICENSE file for copyright and license details. */
-#define GAP 10
+#define GAP 6
 #define TERMINAL "st"
 #define TERMCLASS "St"
 #define BROWSER "microsoft-edge-stable"
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int gappx     = GAP;      /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = {"Iosevka:style:medium:size=16" ,"JetBrainsMono Nerd Font:style:medium:size=16", "Material Design Icons Desktop:size=16" };
+static const char *fonts[]          = {"Iosevka:style:medium:size=14" ,"JetBrainsMono Nerd Font:style:medium:size=14", "Material Design Icons Desktop:size=14" };
 static const int vertpad            = GAP;      /* vertical padding of bar */
 static const int sidepad            = GAP;      /* horizontal padding of bar */
-static const int horizpadbar        = 15;        /* horizontal padding for statusbar */
-static const int vertpadbar         = 15;        /* vertical padding for statusbar */
-static const char dmenufont[]       ="Iosevka:style:medium:size=16" ;
+static const int horizpadbar        = GAP * 1.5;        /* horizontal padding for statusbar */
+static const int vertpadbar         = GAP * 1.5;        /* vertical padding for statusbar */
+static const char dmenufont[]       ="Iosevka:style:medium:size=14" ;
 static const char col_gray1[]       = "#1e222a";
 static const char col_gray2[]       = "#2e323a";
 static const char col_gray3[]       = "#abb2bf";
