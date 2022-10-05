@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 #define GAP 6
-#define TERMINAL "st"
-#define TERMCLASS "St"
+#define TERMINAL "alacritty"
+#define TERMCLASS "Alacritty"
 #define BROWSER "microsoft-edge-stable"
 
 /* appearance */
@@ -66,7 +66,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *dmenucmd[] = { "dmenu_run", NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd[]  = { "alacritty", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -101,6 +101,7 @@ static const Key keys[] = {
   { MODKEY,                       XK_w,      spawn,          {.v = (const char*[]){ BROWSER, NULL } } },
   { MODKEY,                       XK_y,      spawn,          SHCMD(TERMINAL "clipyt") },
   { MODKEY|ShiftMask,             XK_BackSpace, spawn,       {.v = (const char*[]){ "sysact", NULL } } },
+  { 0,                            XK_Print,  spawn,          {.v = (const char*[]){ "maimpick", NULL } } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
