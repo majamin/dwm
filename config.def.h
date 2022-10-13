@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 #define GAP 6
-#define TERMINAL "alacritty"
-#define TERMCLASS "Alacritty"
+#define TERMINAL "kitty"
+#define TERMCLASS "kitty"
 #define BROWSER "microsoft-edge-stable"
 
 /* appearance */
@@ -66,7 +66,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *dmenucmd[] = { "dmenu_run", NULL };
-static const char *termcmd[]  = { "alacritty", NULL };
+static const char *termcmd[]  = { "kitty", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
