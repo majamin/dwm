@@ -99,7 +99,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
   { MODKEY,                       XK_w,      spawn,          {.v = (const char*[]){ BROWSER, NULL } } },
-  { MODKEY,                       XK_y,      spawn,          SHCMD(TERMINAL "clipyt") },
+  { MODKEY,                       XK_y,      spawn,          {.v = (const char*[]){ "clipyt", NULL } } },
   { MODKEY|ShiftMask,             XK_BackSpace, spawn,       {.v = (const char*[]){ "sysact", NULL } } },
   { 0,                            XK_Print,  spawn,          {.v = (const char*[]){ "maimpick", NULL } } },
 	TAGKEYS(                        XK_1,                      0)
