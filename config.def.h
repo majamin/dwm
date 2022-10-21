@@ -95,14 +95,16 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
-	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
+	// { MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
+	// { MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
+	// { MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
   { MODKEY,                       XK_w,      spawn,          {.v = (const char*[]){ BROWSER, NULL } } },
   { MODKEY,                       XK_y,      spawn,          {.v = (const char*[]){ "clipyt", NULL } } },
   { MODKEY|ShiftMask,             XK_BackSpace, spawn,       {.v = (const char*[]){ "sysact", NULL } } },
   { 0,                            XK_Print,  spawn,          {.v = (const char*[]){ "maimpick", NULL } } },
+  { MODKEY,                       XK_minus,  spawn,          SHCMD("pamixer --allow-boost -d 8") },
+  { MODKEY,                       XK_equal,  spawn,          SHCMD("pamixer --allow-boost -i 8") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
