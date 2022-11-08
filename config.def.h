@@ -2,7 +2,7 @@
 #define GAP 6
 #define TERMINAL "kitty"
 #define TERMCLASS "kitty"
-#define BROWSER "microsoft-edge-stable"
+#define BROWSER "firefox"
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
