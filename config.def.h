@@ -13,7 +13,7 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = {"Iosevka:style:medium:size=14" ,"JetBrainsMono Nerd Font:style:medium:size=14", "Material Design Icons Desktop:size=14" };
+static const char *fonts[]          = {"Iosevka Nerd Font:style:medium:size=14" ,"JetBrainsMono Nerd Font:style:medium:size=14", "Material Design Icons Desktop:size=14" };
 static const int vertpad            = GAP;      /* vertical padding of bar */
 static const int sidepad            = GAP;      /* horizontal padding of bar */
 static const int horizpadbar        = GAP * 1.5;        /* horizontal padding for statusbar */
@@ -41,7 +41,7 @@ static const Rule rules[] = {
 	 */
   /* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
   { "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
-  { "Firefox", NULL,     NULL,           1 << 3,    0,          0,          -1,        -1 },
+  { "firefox", NULL,     NULL,           1 << 3,    0,          0,          -1,        -1 },
   { "kitty",   NULL,     NULL,           0,         0,          1,           0,        -1 },
   { "mpv",     NULL,     NULL,           0,         1,          0,           0,        -1 },
   { NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
