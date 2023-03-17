@@ -13,12 +13,12 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = {"Iosevka Nerd Font:style:medium:size=14" ,"JetBrainsMono Nerd Font:style:medium:size=14", "Material Design Icons Desktop:size=14" };
+static const char *fonts[]          = { "JetBrainsMono Nerd Font:style:medium:size=14", "Material Design Icons Desktop:size=14" };
 static const int vertpad            = GAP;      /* vertical padding of bar */
 static const int sidepad            = GAP;      /* horizontal padding of bar */
 static const int horizpadbar        = GAP * 1.5;        /* horizontal padding for statusbar */
 static const int vertpadbar         = GAP * 1.5;        /* vertical padding for statusbar */
-static const char dmenufont[]       ="Iosevka:style:medium:size=14" ;
+static const char dmenufont[]       ="JetBrainsMono Nerd Font:style:medium:size=14" ;
 static const char col_gray1[]       = "#1e222a";
 static const char col_gray2[]       = "#2e323a";
 static const char col_gray3[]       = "#abb2bf";
@@ -32,19 +32,19 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "➊", "➋", "➌", "➍" };
+static const char *tags[] = { "󰎤", "󰎧", "󰎪", "󰎭" };
 
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-  /* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-  { "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
-  { "firefox", NULL,     NULL,           1 << 3,    0,          0,          -1,        -1 },
-  { "kitty",   NULL,     NULL,           0,         0,          1,           0,        -1 },
-  { "mpv",     NULL,     NULL,           0,         1,          0,           0,        -1 },
-  { NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
+	{ "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
+	{ "firefox", NULL,     NULL,           1 << 3,    0,          0,          -1,        -1 },
+	{ "kitty",   NULL,     NULL,           0,         0,          1,           0,        -1 },
+	{ "mpv",     NULL,     NULL,           0,         1,          0,           0,        -1 },
+	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
 
 /* layout(s) */
@@ -105,17 +105,17 @@ static const Key keys[] = {
 	// { MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
 	// { MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-  { MODKEY,                       XK_w,      spawn,          {.v = (const char*[]){ BROWSER, NULL } } },
-  { MODKEY,                       XK_y,      spawn,          {.v = (const char*[]){ "clipyt", NULL } } },
-  { MODKEY|ShiftMask,             XK_BackSpace, spawn,       {.v = (const char*[]){ "sysact", NULL } } },
-  { 0,                            XK_Print,  spawn,          {.v = (const char*[]){ "maimpick", NULL } } },
-  { MODKEY,                       XK_minus,  spawn,          SHCMD("pamixer --allow-boost -d 8") },
-  { MODKEY,                       XK_equal,  spawn,          SHCMD("pamixer --allow-boost -i 8") },
-  { 0, XF86XK_AudioMute,                     spawn,          SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") },
-  { 0, XF86XK_AudioRaiseVolume,              spawn,          SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%+") },
-  { 0, XF86XK_AudioLowerVolume,              spawn,          SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-") },
-  { 0, XF86XK_MonBrightnessUp,               spawn,          {.v = (const char*[]){ "brightnessctl", "set", "+10%", NULL } } },
-  { 0, XF86XK_MonBrightnessDown,             spawn,          {.v = (const char*[]){ "brightnessctl", "set", "10%-", NULL } } },
+	{ MODKEY,                       XK_w,      spawn,          {.v = (const char*[]){ BROWSER, NULL } } },
+	{ MODKEY,                       XK_y,      spawn,          {.v = (const char*[]){ "clipyt", NULL } } },
+	{ MODKEY|ShiftMask,          XK_BackSpace, spawn,          {.v = (const char*[]){ "sysact", NULL } } },
+	{ 0,                            XK_Print,  spawn,          {.v = (const char*[]){ "maimpick", NULL } } },
+	{ MODKEY,                       XK_minus,  spawn,          SHCMD("pamixer --allow-boost -d 8") },
+	{ MODKEY,                       XK_equal,  spawn,          SHCMD("pamixer --allow-boost -i 8") },
+	{ 0,                     XF86XK_AudioMute, spawn,          SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") },
+	{ 0,              XF86XK_AudioRaiseVolume, spawn,          SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%+") },
+	{ 0,              XF86XK_AudioLowerVolume, spawn,          SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-") },
+	{ 0,               XF86XK_MonBrightnessUp, spawn,          {.v = (const char*[]){ "brightnessctl", "set", "+10%", NULL } } },
+	{ 0,             XF86XK_MonBrightnessDown, spawn,          {.v = (const char*[]){ "brightnessctl", "set", "10%-", NULL } } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
