@@ -112,11 +112,11 @@ static const Key keys[] = {
 	{ 0,                            XK_Print,  spawn,          {.v = (const char*[]){ "maimpick", NULL } } },
 	{ MODKEY,                       XK_minus,  spawn,          SHCMD("pamixer --allow-boost -d 8") },
 	{ MODKEY,                       XK_equal,  spawn,          SHCMD("pamixer --allow-boost -i 8") },
-	{ 0,                     XF86XK_AudioMute, spawn,          SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") },
-	{ 0,              XF86XK_AudioRaiseVolume, spawn,          SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%+") },
-	{ 0,              XF86XK_AudioLowerVolume, spawn,          SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-") },
-	{ 0,               XF86XK_MonBrightnessUp, spawn,          {.v = (const char*[]){ "brightness.sh", "+10%", NULL } } },
-	{ 0,             XF86XK_MonBrightnessDown, spawn,          {.v = (const char*[]){ "brightness.sh", "10%-", NULL } } },
+	{ 0,                     XF86XK_AudioMute, spawn,          {.v = (const char*[]){ "set-volume-notify.sh", "0", NULL } } },
+	{ 0,              XF86XK_AudioRaiseVolume, spawn,          {.v = (const char*[]){ "set-volume-notify.sh", "0.1+", NULL } } },
+	{ 0,              XF86XK_AudioLowerVolume, spawn,          {.v = (const char*[]){ "set-volume-notify.sh", "0.1-", NULL } } },
+	{ 0,               XF86XK_MonBrightnessUp, spawn,          {.v = (const char*[]){ "set-brightness-notify.sh", "+10%", NULL } } },
+	{ 0,             XF86XK_MonBrightnessDown, spawn,          {.v = (const char*[]){ "set-brightness-notify.sh", "10%-", NULL } } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
