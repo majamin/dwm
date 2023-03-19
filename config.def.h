@@ -13,12 +13,12 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "JetBrainsMono Nerd Font:style:medium:size=14", "Material Design Icons Desktop:size=14" };
+static const char *fonts[]          = { "JetBrainsMono Nerd Font:style:medium:size=12", "Material Design Icons Desktop:size=12" };
 static const int vertpad            = GAP;      /* vertical padding of bar */
 static const int sidepad            = GAP;      /* horizontal padding of bar */
 static const int horizpadbar        = GAP * 1.5;        /* horizontal padding for statusbar */
 static const int vertpadbar         = GAP * 1.5;        /* vertical padding for statusbar */
-static const char dmenufont[]       ="JetBrainsMono Nerd Font:style:medium:size=14" ;
+static const char dmenufont[]       ="JetBrainsMono Nerd Font:style:medium:size=12" ;
 static const char col_gray1[]       = "#1e222a";
 static const char col_gray2[]       = "#2e323a";
 static const char col_gray3[]       = "#abb2bf";
@@ -107,7 +107,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ MODKEY,                       XK_w,      spawn,          {.v = (const char*[]){ BROWSER, NULL } } },
 	{ MODKEY,                       XK_y,      spawn,          {.v = (const char*[]){ "clipyt", NULL } } },
-	{ MODKEY,                       XK_o,      spawn,          SHCMD("find ~/.screenlayout/ -type f | dmenu | sh") },
+	{ MODKEY,                       XK_o,      spawn,          SHCMD("find ~/.screenlayout/ -type f | dmenu | sh && ~/.local/bin/setbg") },
 	{ MODKEY|ShiftMask,          XK_BackSpace, spawn,          {.v = (const char*[]){ "sysact", NULL } } },
 	{ 0,                            XK_Print,  spawn,          {.v = (const char*[]){ "maimpick", NULL } } },
 	{ MODKEY,                       XK_minus,  spawn,          SHCMD("pamixer --allow-boost -d 8") },
@@ -115,8 +115,8 @@ static const Key keys[] = {
 	{ 0,                     XF86XK_AudioMute, spawn,          SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") },
 	{ 0,              XF86XK_AudioRaiseVolume, spawn,          SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%+") },
 	{ 0,              XF86XK_AudioLowerVolume, spawn,          SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-") },
-	{ 0,               XF86XK_MonBrightnessUp, spawn,          {.v = (const char*[]){ "brightnessctl", "set", "+10%", NULL } } },
-	{ 0,             XF86XK_MonBrightnessDown, spawn,          {.v = (const char*[]){ "brightnessctl", "set", "10%-", NULL } } },
+	{ 0,               XF86XK_MonBrightnessUp, spawn,          {.v = (const char*[]){ "brightness.sh", "+10%", NULL } } },
+	{ 0,             XF86XK_MonBrightnessDown, spawn,          {.v = (const char*[]){ "brightness.sh", "10%-", NULL } } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
