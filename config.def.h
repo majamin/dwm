@@ -77,73 +77,68 @@ static const char *termcmd[]  = { "kitty", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
-	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY,                       XK_Return, zoom,           {0} },
-	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY,                       XK_q,      killclient,     {0} },
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_space,  setlayout,      {0} },
-	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
-	{ MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
-	{ MODKEY,                       XK_s,      togglesticky,   {0} },
-	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
-	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
-	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	// { MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
-	// { MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
-	// { MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-	{ MODKEY,                       XK_w,      spawn,          {.v = (const char*[]){ BROWSER, NULL } } },
-	{ MODKEY,                       XK_y,      spawn,          {.v = (const char*[]){ "clipyt", NULL } } },
-	{ MODKEY,                       XK_e,      spawn,          {.v = (const char*[]){ "nautilus", NULL } } },
-	{ MODKEY,                       XK_o,      spawn,          SHCMD("find ~/.screenlayout/ -type f | dmenu | sh && ~/.local/bin/setbg") },
-	{ MODKEY|ShiftMask,          XK_BackSpace, spawn,          {.v = (const char*[]){ "sysact", NULL } } },
-	{ 0,                            XK_Print,  spawn,          {.v = (const char*[]){ "maimpick", NULL } } },
-	{ MODKEY,                       XK_minus,  spawn,          SHCMD("pamixer --allow-boost -d 8") },
-	{ MODKEY,                       XK_equal,  spawn,          SHCMD("pamixer --allow-boost -i 8") },
-	{ 0,                     XF86XK_AudioMute, spawn,          {.v = (const char*[]){ "set-volume-notify.sh", "0", NULL } } },
-	{ 0,              XF86XK_AudioRaiseVolume, spawn,          {.v = (const char*[]){ "set-volume-notify.sh", "0.1+", NULL } } },
-	{ 0,              XF86XK_AudioLowerVolume, spawn,          {.v = (const char*[]){ "set-volume-notify.sh", "0.1-", NULL } } },
-	{ 0,               XF86XK_MonBrightnessUp, spawn,          {.v = (const char*[]){ "set-brightness-notify.sh", "+10%", NULL } } },
-	{ 0,             XF86XK_MonBrightnessDown, spawn,          {.v = (const char*[]){ "set-brightness-notify.sh", "10%-", NULL } } },
-	TAGKEYS(                        XK_1,                      0)
-	TAGKEYS(                        XK_2,                      1)
-	TAGKEYS(                        XK_3,                      2)
-	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
+	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },				// Launch dmenu_run (accessing binaries on PATH)
+	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },					// Launch terminal (see ~/.local/src/dwm/config.deh.h)
+	{ MODKEY,                       XK_b,      togglebar,      {0} },											// Toggle the statusbar on/off
+	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },							// Focus next client
+	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },							// Focus previous client
+	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },							// Increment client stack position
+	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },							// Decrement client stack position
+	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },						// Increase the master client width
+	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },						// Decrease the master client width
+	{ MODKEY,                       XK_Return, zoom,           {0} },											// Toggle client master
+	{ MODKEY,                       XK_Tab,    view,           {0} },											// Switch to previous tag
+	{ MODKEY,                       XK_q,      killclient,     {0} },											// Kill client
+	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },			// Set tiling layout
+	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },			// Set floating layout
+	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },			// Set monocle layout
+	{ MODKEY,                       XK_space,  setlayout,      {0} },											// Switch to previous layout
+	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },											// Toggle client float
+	{ MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },											// Toggle client fullscreen
+	{ MODKEY,                       XK_s,      togglesticky,   {0} },											// Toggle client sticky
+	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },							// View all tags
+	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },							//
+	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },							// Focus previous display (monitor)
+	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },							// Focus next display (monitor)
+	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },							// Move client to previous display
+	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },							// Move client to next display
+	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },							// Increase layout gaps
+	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },							// Decrease layout gaps
+	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },							// Reset layout gaps
+	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },											// Kill DWM
+	{ MODKEY,                       XK_w,      spawn,          {.v = (const char*[]){ BROWSER, NULL } } },						// Spawn web browser (see ~/.local/src/dwm/config.deh.h)
+	{ MODKEY,                       XK_y,      spawn,          {.v = (const char*[]){ "clipyt", NULL } } },						// Spawn clipyt
+	{ MODKEY,                       XK_e,      spawn,          {.v = (const char*[]){ "nautilus", NULL } } },					// Spawn file browser (see ~/.local/src/dwm/config.deh.h)
+	{ MODKEY,                       XK_o,      spawn,          SHCMD("find ~/.screenlayout/ -type f | dmenu | sh && ~/.local/bin/setbg") },	// Set screen layout (see ~/.screenlayout/)
+	{ MODKEY|ShiftMask,          XK_BackSpace, spawn,          {.v = (const char*[]){ "sysact", NULL } } },						// Shutdown, reboot, refresh DWM
+	{ 0,                            XK_Print,  spawn,          {.v = (const char*[]){ "maimpick", NULL } } },					// Take a screenshot (copies and saves)
+	{ MODKEY,                       XK_equal,  spawn,          {.v = (const char*[]){ "set-volume-notify.sh", "0.1+", NULL } } },					// Volume up
+	{ MODKEY,                       XK_minus,  spawn,          {.v = (const char*[]){ "set-volume-notify.sh", "0.1-", NULL } } },					// Volume down
+	{ 0,                     XF86XK_AudioMute, spawn,          {.v = (const char*[]){ "set-volume-notify.sh", "0", NULL } } },						// Volume mute
+	{ 0,              XF86XK_AudioRaiseVolume, spawn,          {.v = (const char*[]){ "set-volume-notify.sh", "0.1+", NULL } } },					// Volume up
+	{ 0,              XF86XK_AudioLowerVolume, spawn,          {.v = (const char*[]){ "set-volume-notify.sh", "0.1-", NULL } } },					// Volume down
+	{ 0,               XF86XK_MonBrightnessUp, spawn,          {.v = (const char*[]){ "set-brightness-notify.sh", "+10%", NULL } } },			// Brightness up (not working? [Read](https://wiki.archlinux.org/title/Backlight))
+	{ 0,             XF86XK_MonBrightnessDown, spawn,          {.v = (const char*[]){ "set-brightness-notify.sh", "10%-", NULL } } },			// Brightness down
+	TAGKEYS(                        XK_1,                      0)					// Select TAG 1
+	TAGKEYS(                        XK_2,                      1)					// Select TAG 2
+	TAGKEYS(                        XK_3,                      2)					// Select TAG 3
+	TAGKEYS(                        XK_4,                      3)					// Select TAG 4
 };
 
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static const Button buttons[] = {
 	/* click                event mask      button          function        argument */
-	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
-	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
-	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
-	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
-	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
-	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
-	{ ClkTagBar,            0,              Button1,        view,           {0} },
-	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
-	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
-	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
+	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },									// Layout - left-click to select previous layout
+	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },		// Layout - right-click to select monocle layout
+	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },									// Layout - middle-click window title to make it master
+	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },			// Layout - right-click statusbar to spawn terminal
+	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },									// Move client with MODKEY + left-click
+	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },									// MODKEY + middle-click toggles client floating
+	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },									// Resize client with MODKEY + right-click
+	{ ClkTagBar,            0,              Button1,        view,           {0} },									// Tag - left-click tag to view it
+	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },									// Tag - right-click tag to add it view it
+	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },									// Tag - MODKEY + left-click to move client to tag
+	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },									// Tag - MODKEY + right-click to make client visible on tag
 };
 
