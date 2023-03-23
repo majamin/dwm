@@ -102,9 +102,6 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },							// Focus next display (monitor)
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },							// Move client to previous display
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },							// Move client to next display
-	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },							// Increase layout gaps
-	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },							// Decrease layout gaps
-	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },							// Reset layout gaps
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },											// Kill DWM
 	{ MODKEY,                       XK_w,      spawn,          {.v = (const char*[]){ BROWSER, NULL } } },						// Spawn web browser (see ~/.local/src/dwm/config.deh.h)
 	{ MODKEY,                       XK_y,      spawn,          {.v = (const char*[]){ "clipyt", NULL } } },						// Spawn clipyt
