@@ -105,16 +105,18 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },							// Move client to next display
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },											// Kill DWM
 	{ MODKEY,                       XK_w,      spawn,          {.v = (const char*[]){ BROWSER, NULL } } },						// Spawn web browser (see ~/.local/src/dwm/config.deh.h)
+	{ MODKEY,                       XK_v,      spawn,          SHCMD("kitty nvim -c VimwikiIndex") },						// Spawn nvim, opening Vimwiki
 	{ MODKEY,                       XK_y,      spawn,          {.v = (const char*[]){ "clipyt", NULL } } },						// Spawn clipyt
 	{ MODKEY,                       XK_e,      spawn,          {.v = (const char*[]){ "nautilus", NULL } } },					// Spawn file browser (see ~/.local/src/dwm/config.deh.h)
 	{ MODKEY,                       XK_o,      spawn,          SHCMD("find ~/.screenlayout/ -type f | dmenu | sh && ~/.local/bin/setbg") },	// Set screen layout (see ~/.screenlayout/)
 	{ MODKEY|ShiftMask,          XK_BackSpace, spawn,          {.v = (const char*[]){ "sysact", NULL } } },						// Shutdown, reboot, refresh DWM
 	{ 0,                            XK_Print,  spawn,          {.v = (const char*[]){ "maimpick", NULL } } },					// Take a screenshot (copies and saves)
-	{ MODKEY,                       XK_equal,  spawn,          {.v = (const char*[]){ "set-volume-notify.sh", "0.1+", NULL } } },					// Volume up
-	{ MODKEY,                       XK_minus,  spawn,          {.v = (const char*[]){ "set-volume-notify.sh", "0.1-", NULL } } },					// Volume down
-	{ 0,                     XF86XK_AudioMute, spawn,          {.v = (const char*[]){ "set-volume-notify.sh", "0", NULL } } },						// Volume mute
-	{ 0,              XF86XK_AudioRaiseVolume, spawn,          {.v = (const char*[]){ "set-volume-notify.sh", "0.1+", NULL } } },					// Volume up
-	{ 0,              XF86XK_AudioLowerVolume, spawn,          {.v = (const char*[]){ "set-volume-notify.sh", "0.1-", NULL } } },					// Volume down
+	{ MODKEY|ShiftMask,             XK_minus,  spawn,          {.v = (const char*[]){ "set-volume-notify.sh", "toggle-mute", NULL } } },	// Volume toggle mute
+	{ MODKEY,                       XK_equal,  spawn,          {.v = (const char*[]){ "set-volume-notify.sh", "+10%", NULL } } },					// Volume up
+	{ MODKEY,                       XK_minus,  spawn,          {.v = (const char*[]){ "set-volume-notify.sh", "-10%", NULL } } },					// Volume down
+	{ 0,                     XF86XK_AudioMute, spawn,          {.v = (const char*[]){ "set-volume-notify.sh", "toggle-mute", NULL } } },	// Volume toggle mute
+	{ 0,              XF86XK_AudioRaiseVolume, spawn,          {.v = (const char*[]){ "set-volume-notify.sh", "+10%", NULL } } },					// Volume up
+	{ 0,              XF86XK_AudioLowerVolume, spawn,          {.v = (const char*[]){ "set-volume-notify.sh", "-10%", NULL } } },					// Volume down
 	{ 0,               XF86XK_MonBrightnessUp, spawn,          {.v = (const char*[]){ "set-brightness-notify.sh", "+10%", NULL } } },			// Brightness up (not working? [Read](https://wiki.archlinux.org/title/Backlight))
 	{ 0,             XF86XK_MonBrightnessDown, spawn,          {.v = (const char*[]){ "set-brightness-notify.sh", "10%-", NULL } } },			// Brightness down
 	TAGKEYS(                        XK_1,                      0)					// Select TAG 1
