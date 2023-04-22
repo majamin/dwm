@@ -89,6 +89,8 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },						// Decrease the master client width
 	{ MODKEY,                       XK_Return, zoom,           {0} },											// Toggle client master
 	{ MODKEY,                       XK_Tab,    view,           {0} },											// Switch to previous tag
+	{ MODKEY|ShiftMask,             XK_j,      aspectresize,   {.i = +24} },
+	{ MODKEY|ShiftMask,             XK_k,      aspectresize,   {.i = -24} },
 	{ MODKEY,                       XK_q,      killclient,     {0} },											// Kill client
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },			// Set tiling layout
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },			// Set floating layout
@@ -117,8 +119,10 @@ static const Key keys[] = {
 	{ 0,                     XF86XK_AudioMute, spawn,          {.v = (const char*[]){ "set-volume-notify.sh", "toggle-mute", NULL } } },	// Volume toggle mute
 	{ 0,              XF86XK_AudioRaiseVolume, spawn,          {.v = (const char*[]){ "set-volume-notify.sh", "+10%", NULL } } },					// Volume up
 	{ 0,              XF86XK_AudioLowerVolume, spawn,          {.v = (const char*[]){ "set-volume-notify.sh", "-10%", NULL } } },					// Volume down
-	{ 0,               XF86XK_MonBrightnessUp, spawn,          {.v = (const char*[]){ "set-brightness-notify.sh", "+10%", NULL } } },			// Brightness up (not working? [Read](https://wiki.archlinux.org/title/Backlight))
-	{ 0,             XF86XK_MonBrightnessDown, spawn,          {.v = (const char*[]){ "set-brightness-notify.sh", "10%-", NULL } } },			// Brightness down
+	{ 0,               XF86XK_MonBrightnessUp, spawn,          {.v = (const char*[]){ "set-brightness-notify.sh", "1", NULL } } },			// Brightness up (not working? [Read](https://wiki.archlinux.org/title/Backlight))
+	{ 0,             XF86XK_MonBrightnessDown, spawn,          {.v = (const char*[]){ "set-brightness-notify.sh", "-1", NULL } } },			// Brightness down
+	{ MODKEY,                       XK_F9,     spawn,          {.v = (const char*[]){ "dmenumount", NULL } } },
+	{ MODKEY,                       XK_F10,    spawn,          {.v = (const char*[]){ "dmenuumount", NULL } } },
 	TAGKEYS(                        XK_1,                      0)					// Select TAG 1
 	TAGKEYS(                        XK_2,                      1)					// Select TAG 2
 	TAGKEYS(                        XK_3,                      2)					// Select TAG 3
