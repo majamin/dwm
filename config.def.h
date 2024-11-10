@@ -110,7 +110,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_v,      spawn,          SHCMD("kitty nvim -c VimwikiIndex") },						// Spawn nvim, opening Vimwiki
 	{ MODKEY,                       XK_y,      spawn,          {.v = (const char*[]){ "clipyt", NULL } } },						// Spawn clipyt
 	{ MODKEY,                       XK_e,      spawn,          {.v = (const char*[]){ "nautilus", NULL } } },					// Spawn file browser (see ~/.local/src/dwm/config.deh.h)
-	{ MODKEY,                       XK_o,      spawn,          SHCMD("find ~/.screenlayout/ -type f | dmenu | sh && ~/.local/bin/setbg") },	// Set screen layout (see ~/.screenlayout/)
+	{ MODKEY,                       XK_o,      spawn,          {.v = (const char*[]){ "dmenuunicode", NULL } } },	// Grab unicode character and copy it
 	{ MODKEY|ShiftMask,          XK_BackSpace, spawn,          {.v = (const char*[]){ "sysact", NULL } } },						// Shutdown, reboot, refresh DWM
 	{ 0,                            XK_Print,  spawn,          {.v = (const char*[]){ "maimpick", NULL } } },					// Take a screenshot (copies and saves)
 	{ MODKEY|ShiftMask,             XK_minus,  spawn,          {.v = (const char*[]){ "set-volume-notify.sh", "toggle-mute", NULL } } },	// Volume toggle mute
