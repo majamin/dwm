@@ -2,8 +2,8 @@
 #include <X11/XF86keysym.h>
 
 #define GAP 6
-#define TERMINAL "st"
-#define TERMCLASS "st"
+#define TERMINAL "wezterm"
+#define TERMCLASS "wezterm"
 #define BROWSER "firefox"
 
 /* appearance */
@@ -43,7 +43,7 @@ static const Rule rules[] = {
 	{ "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
 	{ "firefox", NULL,     NULL,           1 << 3,    0,          0,          -1,        -1 },
 	{ "firefox", NULL,"Picture-in-Picture",0,         1,          0,           0,        -1 },
-	{ "st",      NULL,     NULL,           0,         0,          1,           0,        -1 },
+	{ "wezterm", NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ "mpv",     NULL,     NULL,           0,         1,          0,           0,        -1 },
 	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
@@ -74,7 +74,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *dmenucmd[] = { "dmenu_run", NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd[]  = { "wezterm", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
