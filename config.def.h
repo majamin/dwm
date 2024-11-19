@@ -110,9 +110,11 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_y,      spawn,          {.v = (const char*[]){ "clipyt", NULL } } },						// Spawn clipyt
 	{ MODKEY,                       XK_e,      spawn,          {.v = (const char*[]){ "nautilus", NULL } } },					// Spawn file browser (see ~/.local/src/dwm/config.deh.h)
 	{ MODKEY,                       XK_o, spawn,               SHCMD("autorandr --change") },	// Set screen layout (see ~/.config/autorandr)
-	{ MODKEY|ShiftMask,             XK_semicolon, spawn,       SHCMD("cat ~/.local/share/unicode-symbols | dmenu | cut -d' ' -f1 | xclip") },	// Get unicode chars
+	{ MODKEY,                       XK_z,      spawn,          {.v = (const char*[]){ "boomer", NULL } } },					// Spawn boomer zoomer
+	{ MODKEY|ShiftMask,             XK_semicolon, spawn,       SHCMD("cat ~/.local/share/unicode-symbols | dmenu | cut -d' ' -f1 | xclip -selection clipboard -i") },	// Get unicode chars
 	{ MODKEY|ShiftMask,          XK_BackSpace, spawn,          {.v = (const char*[]){ "sysact", NULL } } },						// Shutdown, reboot, refresh DWM
 	{ 0,                            XK_Print,  spawn,          {.v = (const char*[]){ "maimpick", NULL } } },					// Take a screenshot (copies and saves)
+	{ MODKEY,                       XK_Print,  spawn,          SHCMD("find \"$HOME/Pictures/Screenshots\" -type f -printf \"%T@ %Tc %p\\n\" | sort -n | tail -1 | cut -d' ' -f9- | xargs -I{} gimp '{}'") }, // edit most recent screenshot file
 	{ MODKEY|ShiftMask,             XK_minus,  spawn,          {.v = (const char*[]){ "set-volume-notify.sh", "toggle-mute", NULL } } },	// Volume toggle mute
 	{ MODKEY,                       XK_equal,  spawn,          {.v = (const char*[]){ "set-volume-notify.sh", "+10%", NULL } } },					// Volume up
 	{ MODKEY,                       XK_minus,  spawn,          {.v = (const char*[]){ "set-volume-notify.sh", "-10%", NULL } } },					// Volume down
